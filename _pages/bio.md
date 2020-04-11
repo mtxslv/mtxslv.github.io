@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/nasa_spacecraft_cropped.jpg/"
+  image: "/images/nasa_spacecraft_cropped.jpg"
 ---  
 
 > "Nothing in this world is difficult, but thinking makes it seem so." -Wu Cheng'en, Monkey: A Journey to the West.
