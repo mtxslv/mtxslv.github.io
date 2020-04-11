@@ -5,8 +5,6 @@ header:
   image: "/images/nasa_spacecraft_cropped.jpg/"
 ---  
 
-# Bio
-
 > "Nothing in this world is difficult, but thinking makes it seem so." -Wu Cheng'en, Monkey: A Journey to the West.
 
 ## Skills
