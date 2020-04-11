@@ -3,6 +3,7 @@ title: "About"
 permalink: /about/
 header:
   image: "/images/nasa_spacecraft_cropped.jpg"
+author_profile: true  
 toc: true
 ---  
 
