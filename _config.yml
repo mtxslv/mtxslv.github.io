@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Mateus de Assis Silva"
-  avatar           : "/images/perfil.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A simple person that fell in love with Robotics, AI and Computer Vision."
   location         : "Natal, RN."
   email            : 
