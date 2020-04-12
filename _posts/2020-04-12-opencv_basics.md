@@ -7,16 +7,8 @@ toc: true
 author_profile: true
 ---
 
-# H1 Heading
+[OpenCV](https://opencv.org/) is a library with programming functions aimed for Computer Vision applications. t is a very important tool and one way to begin working with it is trying to develop simple examples.
 
-## H2 Heading
+In this example let's try to solve [this one](https://agostinhobritojr.github.io/tutorial/pdi/#_exerc%C3%ADcios). Agostinho Brito Jr is a professor of Digital Image Processing at Universidade Federal do Rio Grande do Norte. You can find more about his work in [his personal github page](agostinhobritojr.github.io).
 
-### H3 heading
-
-kaskhsdlksdksdhhld
-
-*italics*
-
-**bold**
-
-
+Ok, no more talking. Hands on!
