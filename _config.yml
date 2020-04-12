@@ -97,7 +97,7 @@ author:
   avatar           : "/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "A simple person that fell in love with Robotics, AI and Computer Vision."
   location         : "Natal, RN."
-  email            : 
+  email            : "mateus.d.assis.silva@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
