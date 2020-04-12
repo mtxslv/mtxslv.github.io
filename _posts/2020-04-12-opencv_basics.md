@@ -41,7 +41,5 @@ int main(int argc, char** argv){
 Note the user will input two points, in order to draw a rectangle. For this, we'll use an array of ints:
 
 ```cpp
-   int pts[2][2] = {{-1,-1},{-1,-1}}; // vertices positions
-```
-
-
+    int pts[2][2] = {{-1,-1},{-1,-1}}; // vertices positions
+```    
