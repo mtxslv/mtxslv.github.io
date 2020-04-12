@@ -2,6 +2,7 @@
 title: "Basic OpenCV operations: dealing with pixels"
 date: 2020-04-12
 tags: [Computer Vision, OpenCV, C++]
+excerpt: "Computer Vision, OpenCV, C++"
 toc: true
 author_profile: true
 ---
