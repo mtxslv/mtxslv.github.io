@@ -98,6 +98,7 @@ author:
   bio              : "A simple person that fell in love with Robotics, AI and Computer Vision."
   location         : "Natal, RN."
   email            : "mateus.d.assis.silva@gmail.com"
+  linkedin         : "https://www.linkedin.com/in/mateus-assis-013a46140/" 
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
