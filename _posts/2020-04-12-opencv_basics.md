@@ -26,15 +26,17 @@ The first step is to include dependencies. For our applications we need three: `
 
 using namespace cv;
 using namespace std;
+
+int main(int argc, char** argv){
+  Mat image;
+  Vec3b val;
+
 ```
 
 Ok, everything is ok. Now we are going to dive in the function. Since we need to get an image and change its color (remember: we will change *greylevels*), let's instantiate a Mat and a Vec objects.
 
-```cpp
-int main(int argc, char** argv){
-  Mat image;
-  Vec3b val;
-```
+
+**block removed**
 
 Note the user will input two points, in order to draw a rectangle. For this, we'll use an array of ints:
 
