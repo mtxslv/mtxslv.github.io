@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/nasa_spacecraft_cropped.jpg"
+  image: "/images/moon_over_bridge.jpeg"
 author_profile: true  
 toc: true
 ---  
