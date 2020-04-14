@@ -116,4 +116,13 @@ Now we just need showing this processed pic!
 ```
 {% endraw %}
 
+# Example
+
+<figure class="half">
+    <a href="/assets/images/image-filename-1-large.jpg"><img src="/images/posts_images/2020-04-12-opencv_basics/biel.png"></a>
+    <a href="/assets/images/image-filename-2-large.jpg"><img src="/images/posts_images/2020-04-12-opencv_basics/processed_image.jpg"></a>
+    <figcaption>Caption describing these two images.</figcaption>
+</figure>
+
+
 The code explained in this post can be found [here](https://github.com/mtxslv/dca0445_dip/blob/master/exercises/regions.cpp). If you go there, you'll notice some trash that I didn't remove. Anyway... thanks to stay until here! 
