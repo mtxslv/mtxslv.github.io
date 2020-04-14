@@ -7,17 +7,19 @@ toc: true
 author_profile: true
 ---
 
-# Introduction
-
-[OpenCV](https://opencv.org/) is a library with programming functions aimed for Computer Vision applications. It is a very important tool and one way to begin working with it is trying to develop simple examples.
+[OpenCV](https://opencv.org/) (_Open Computer Vision Library_) is an open source computer vision and machine learning software library. It has a lot of optimized algorithms for a wide range of applications (for example, object and face recognition). One way of learning to use it is trying to apply this tool to solve a computer vision like problem.
 
 In this example let's try to solve [this one](https://agostinhobritojr.github.io/tutorial/pdi/#_exerc%C3%ADcios). Agostinho Brito Jr is a professor of Digital Image Processing at Universidade Federal do Rio Grande do Norte. You can find more about his work in [his personal github page](https://agostinhobritojr.github.io).
+
+The question asks to invert the greylevel of an rectangular area inside one image. The user should input two points that will define the polygon (opposite vertices). Note it will give us the negative! Funny, isn't it?
 
 Ok, no more talking. Hands on!
 
 # Code
 
-The first step is to include dependencies. For our applications we need three: ```iostream```, ```opencv``` and ```algorithm```. We'll set up namespaces also.
+The first step is to include the dependencies. For our applications we need three: ```iostream```, ```opencv``` and ```algorithm```. The [first one](http://www.cplusplus.com/reference/iostream/) is necessary because we will need external input (and we will use `cin` for do that and `cout` to comunicate). The second one is our celebrity and the last one will be used to decide where the vertices are based on their value (greater value, farther from the origin).
+
+ We'll set up [namespaces](https://www.geeksforgeeks.org/namespace-in-c/) also. They are important because they restrict the scope of certain named entities, thus [preventing name conflicts](https://en.cppreference.com/w/cpp/language/namespace). In our example, it will avoid our compiler get confused: it will know that `cin` and `cout` belongs to `std` and that `imread` belongs to `cv2`.
 
 ```cpp
 #include <iostream>
@@ -26,18 +28,16 @@ The first step is to include dependencies. For our applications we need three: `
 
 using namespace cv;
 using namespace std;
-
 ```
 
-Ok, everything is ok. Now we are going to dive in the function. Since we need to get an image and change its color (remember: we will change *greylevels*), let's instantiate a ```Mat``` and a ```Vec``` objects.
+Ok, we have everything we need. Now we are going to dive in the function. Since we need to get an image from a folder and change its color (remember: we will change *greylevels*), let's instantiate a ```Mat``` object. `Mat` is an [OpenCV class to deal with n-dimensional dense arrays](https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html) (basically what an image is). 
 
 ```cpp
 int main(int argc, char** argv){
   Mat image;
-  Vec3b val;
 ```
 
-Note the user will input two points, in order to draw a rectangle. For this, we'll use an array of ints:
+Notice the user will input two points, in order to draw a rectangle. In order to store this, we'll use an array of ints:
 
 {% raw %}
 ```cpp
@@ -45,7 +45,9 @@ Note the user will input two points, in order to draw a rectangle. For this, we'
 ```
 {% endraw %}
 
-The next step is to input the image.
+This array will store the second point after the first one. Each of them has two coordinates. I already initialized it.
+
+The next step is to get the image. The process to input the picture can be seen [here](https://github.com/mtxslv/dca0445_dip/wiki/How-to-run-the-algorithms-(an-example)). Below we see the block that runs to store the pixels information as greylevels inside the `image` object.
 
 {% raw %}
 ```cpp
@@ -56,7 +58,7 @@ The next step is to input the image.
 ```
 {% endraw %}
 
-Now the image is saved in ```image```. Let's get the vertices.
+Now the image is saved, let's get the vertices. An `do-while` loop ensures they are valid (non-negative and don't go beyond image size).
 
 {% raw %}
 ```cpp
@@ -73,7 +75,7 @@ Now the image is saved in ```image```. Let's get the vertices.
 ```
 {% endraw %}
 
-Let's se the original image...
+Now let's se the original image... the `namedWindow` function creates an window with a title that is passed as a parameter; the other parameter (`WINDOW_AUTOSIZE`) makes it fit the displayed picture. The `imshow` [does basically the same](https://docs.opencv.org/2.4/modules/highgui/doc/user_interface.html?highlight=namedwindow) (yeah, I repeated myself, sorry ) and the `waitKey` makes the code waits for a pressed key.
 
 {% raw %}
 ```cpp
@@ -83,7 +85,13 @@ namedWindow("Original Image",WINDOW_AUTOSIZE);
 ```
 {% endraw %}
 
-Processing the image...
+Now, the focus of our project: Processing the image pixel-by-pixel. Let's iterate using two for loops (the image is an bi-dimensional matrix): the first one runs the rows and the second one runs the lines. Notice how to use the `std::min` and `std::max` to decide where to start and end the loop. 
+
+The pixels' intensity goes between 0 and 255. The negative of a null intensity is its maximum value, and the negative of a maximum intensity is a null one. It indicates the equation we should use:
+
+`negative_intensity = 255 - original_intensity` .
+
+Ok, but how to do it using code? Well... if we need [to access pixels' values](https://docs.opencv.org/2.4/doc/user_guide/ug_mat.html#accessing-pixel-intensity-values), we must use `image.at`. But we have to know, as well as the place to look at, the number of channels. It is a greyscale image, so it has just one channel. Since its value can change in 256 levels, we can use an _unsigned char_ to store it.
 
 {% raw %}
 ```cpp
@@ -95,7 +103,7 @@ Processing the image...
 ```
 {% endraw %}
 
-and showing this processed pic!
+Now we just need showing this processed pic!
 
 {% raw %}
 ```cpp
@@ -107,3 +115,5 @@ and showing this processed pic!
 }
 ```
 {% endraw %}
+
+The code explained in this post can be found [here](https://github.com/mtxslv/dca0445_dip/blob/master/exercises/regions.cpp). If you go there, you'll notice some trash that I didn't remove. Anyway... thanks to stay until here! 
