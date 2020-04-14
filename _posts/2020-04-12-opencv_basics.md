@@ -118,11 +118,18 @@ Now we just need showing this processed pic!
 
 # Example
 
+Below we can see how to run the code. Notice the first lower vertex input went wrong because it implies a point that does not exist (_200,300_ while the image is 256x256). 
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-04-12-opencv_basics/example_run_terminal.png" alt="">
+
+And here we can see, at the left, the original image, and at the right, the processed one.
+
 <figure class="half">
     <a href="/assets/images/image-filename-1-large.jpg"><img src="/images/posts_images/2020-04-12-opencv_basics/biel.png"></a>
     <a href="/assets/images/image-filename-2-large.jpg"><img src="/images/posts_images/2020-04-12-opencv_basics/processed_image.jpg"></a>
-    <figcaption>Caption describing these two images.</figcaption>
+    <figcaption>Original and Processed images.</figcaption>
 </figure>
 
+# Conclusion
 
 The code explained in this post can be found [here](https://github.com/mtxslv/dca0445_dip/blob/master/exercises/regions.cpp). If you go there, you'll notice some trash that I didn't remove. Anyway... thanks to stay until here! 
