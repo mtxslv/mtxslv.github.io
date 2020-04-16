@@ -81,7 +81,7 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
 ```
 {% endraw %}
 
-
+Ok, now we must allocate memory to the processed image. The object `processed_image` receives a copy of `image` as its initialization.
 
 {% raw %}
 ```cpp
@@ -89,6 +89,8 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
   Mat processed_image = image.clone();
 ```
 {% endraw %}
+
+Below I define the rectangular areas that captures the Regions of Interest. The [Rect Class](https://docs.opencv.org/3.4/d2/d44/classcv_1_1Rect__.html) has four constructor parameters: the top left corner coordinates, the width and the height. If we consider the origin of the system at top left corner, the _X axis_ points towards right and the _Y axis_ points downwards. 
 
 {% raw %}
 ```cpp
@@ -99,6 +101,8 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
 ```
 {% endraw %}
 
+Now we define our four parts _A, B, C and D_ using the rectangular areas. It means A, B, C and D are images, as well!
+
 {% raw %}
 ```cpp
   Mat A = image(A_area);
@@ -108,6 +112,8 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
 ```
 {% endraw %}
 
+The final product is the original rectangle with the four little images copied.
+
 {% raw %}
 ```cpp
   A.copyTo(processed_image(D_area));
@@ -116,6 +122,8 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
   D.copyTo(processed_image(A_area));
 ```
 {% endraw %}
+
+The process is done! We just need to show the processed picture.
 
 {% raw %}
 ```cpp
@@ -133,3 +141,18 @@ We will create our _collage_  using Regions of Interest (ROI). I chose this way 
 
 # Example
 
+One example of code run can be seen below.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-04-15-opencv_basics_regions/running.png" alt="">
+
+And here we can see, at the left, the original image, and at the right, the processed one.
+
+<figure class="half">
+    <a href="/assets/images/image-filename-1-large.jpg"><img src="/images/posts_images/2020-04-12-opencv_basics/biel.png"></a>
+    <a href="/assets/images/image-filename-2-large.jpg"><img src="/images/posts_images/2020-04-15-opencv_basics_regions/processed_image.jpg"></a>
+    <figcaption>Original and Processed images.</figcaption>
+</figure>
+
+# Conclusion
+
+The code explained in this post can be found [here](https://github.com/mtxslv/dca0445_dip/blob/master/exercises/trocaregioes.cpp). There may be some trash I didn't removed. Anyway... thanks for reading! 
