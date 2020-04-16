@@ -3,7 +3,7 @@ main:
   - title: "About"
     url: /about/
   - title: "Bibliography"
-    url: /personal_bibliography/    
+    url: /my_bibliography/    
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "Sample Posts"
