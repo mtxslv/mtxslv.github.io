@@ -22,3 +22,7 @@ Still to come ;)
 # Linear Algebra
 
 Still to come ;)
+
+# Machine Learning
+
+I recommend using [Tom Mitchell](https://books.google.com.br/books/about/Machine_Learning.html?id=EoYBngEACAAJ&redir_esc=y). I found in it the right amount of theory I wanted to see in a textbook.
