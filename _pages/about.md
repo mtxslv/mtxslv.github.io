@@ -16,7 +16,7 @@ toc: true
 * OS: Linux (Ubuntu).
 * Hardware: Arduino.
 
-_Currently studying ROS, TensorFlow and OpenCV_
+_Currently studying Machine Learning_
 
 ## Education
 
