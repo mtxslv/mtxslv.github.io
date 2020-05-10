@@ -13,7 +13,7 @@ So I'd like to share my particular bibliography. It is a collection of books (li
 
 # Probability & Statistics
 
- I would recommend [Statistics: Principle and Methods](https://books.google.com.br/books/about/Statistics.html?id=6MkfAQAAIAAJ&redir_esc=y), written by Richard A. Johnson and Gouri K. Bhattacharyya. I didn't use it during my probability and statistics course, but when I needed to review the concepts, it served me well.
+ I would recommend [Statistics: Principle and Methods](https://books.google.com.br/books/about/Statistics.html?id=6MkfAQAAIAAJ&redir_esc=y), written by Richard A. Johnson and Gouri K. Bhattacharyya. I didn't use it during my probability and statistics course, but when I needed to review the concepts, it served me well. I like it very much because of its first chapters.
 
 # Calculus
 
@@ -25,4 +25,4 @@ Still to come ;)
 
 # Machine Learning
 
-I recommend using [Tom Mitchell](https://books.google.com.br/books/about/Machine_Learning.html?id=EoYBngEACAAJ&redir_esc=y). I found in it the right amount of theory I wanted to see in a textbook.
+I recommend using [Tom Mitchell](https://books.google.com.br/books/about/Machine_Learning.html?id=EoYBngEACAAJ&redir_esc=y). I found in it the right amount of theory I wanted to see in a textbook. I would recommend [Richard O. Duda](https://books.google.com.br/books/about/Pattern_Classification.html?id=Br33IRC3PkQC&redir_esc=y) as well, bacause of its mathematical appendix.
