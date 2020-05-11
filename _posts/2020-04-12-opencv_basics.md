@@ -5,7 +5,10 @@ tags: [Computer Vision, OpenCV, C++]
 excerpt: "Computer Vision, OpenCV, C++"
 toc: true
 author_profile: true
+mathjax: true
 ---
+
+$$ \theta_t $$
 
 [OpenCV](https://opencv.org/) (_Open Computer Vision Library_) is an open source computer vision and machine learning software library. It has a lot of optimized algorithms for a wide range of applications (for example, object and face recognition). One way of learning to use it is trying to apply this tool to solve a computer vision like problem.
 
