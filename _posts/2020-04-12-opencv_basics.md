@@ -8,8 +8,6 @@ author_profile: true
 mathjax: true
 ---
 
-$$ \theta_t $$
-
 [OpenCV](https://opencv.org/) (_Open Computer Vision Library_) is an open source computer vision and machine learning software library. It has a lot of optimized algorithms for a wide range of applications (for example, object and face recognition). One way of learning to use it is trying to apply this tool to solve a computer vision like problem.
 
 In this example let's try to solve [the first one here](https://agostinhobritojr.github.io/tutorial/pdi/#_exerc%C3%ADcios). Agostinho Brito Jr is a professor of Digital Image Processing at Universidade Federal do Rio Grande do Norte. You can find more about his work in [his personal github page](https://agostinhobritojr.github.io).
