@@ -7,7 +7,7 @@ author_profile: true
 toc: true
 ---  
 
-> "Nothing in this world is difficult, but thinking makes it seem so." -Wu Cheng'en, Monkey: A Journey to the West.
+> "It is not a mistery of magic, but a feat of engineering". A Batalha do Apocalipse, Eduardo Spohr. 2007. 
 
 ## Skills
 
