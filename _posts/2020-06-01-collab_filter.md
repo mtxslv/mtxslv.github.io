@@ -1,5 +1,5 @@
 ---
-title: "An Collaborative Filtering implementation"
+title: "A Collaborative Filtering implementation"
 date: 2020-06-01
 tags: [Machine Learning, k Nearest Neighbor, Python]
 excerpt: "Machine Learning, k Nearest Neighbor, Python"
@@ -30,13 +30,13 @@ Ok, this was a very fast explanation about the concepts related to the problem a
 
 The user database consists of a set of votes $$v_{i,j}$$ corresponding to the vote for user _i_ on item _j_. If $$I_i$$ is the set of items on which user _i_ has voted, we first define the mean vote for user _i_ as:
 
-$$\overline{v_i} = \fract{1}{|I_i|} \sum_{j \in I_i}^{}v_{i,j}$$
+$$\overline{v_i} = \frac{1}{|I_i|} \sum_{j \in I_i}^{}v_{i,j}$$
 
 We predict the votes of the active user (indicated with a subscript _a_) based on some partial information regarding the active user and a set of weights calculated from the user database. We assume the predicted vote of the active user for item _k_ $$p_{a,k}$$, is a weighted sum of the votes of the other users:
 
-$$p_{a,k} = \overline{v_a} + \kappa \sum_{i=1}^{n} w(a,i)\[v_{i,k} - \overline{v_i}\]$$
+$$p_{a,k} = \overline{v_a} + \kappa \sum_{i=1}^{n} w(a,i)[v_{i,k} - \overline{v_i}]$$
 
-where _n_ is the number of users in the collaborative filtering database with nonzero weights. The weights _w(i,a)_ we use are the correlations between each user _i_ and the active user. $$\kappa$$ is a normalization factor such that the absolute values of the weights sum to unity (then $$\kappa = (\sum |w(a,i)| )^-1$$).
+where _n_ is the number of users in the collaborative filtering database with nonzero weights. The weights _w(i,a)_ we use are the correlations between each user _i_ and the active user. $$\kappa$$ is a normalization factor such that the absolute values of the weights sum to unity (then $$\kappa = (\sum \vert w(a,i) \vert )^-1$$).
 
 rest of explanation coming soon ;)
 
