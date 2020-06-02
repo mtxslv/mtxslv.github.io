@@ -73,6 +73,117 @@ CollaborativeFiltering(active_user,item_to_be_rated, training_set)
 * Return _estimation_
 ```
 
-# Code
+# Codes
+
+I will suppose the dataset is a set of logs. Each row has the format: _movieID_ , _customerID_ , _rating_. The first element is a movie identifying number, the second is the user identifying number and the last one is the rating. 
+
+The training set is made of all "training users" rates on all available movies (products). A query instance is the set of ratings _active user_ did and the movie we want to estimate the rate (_k_).
+
+Let's set the information of row format. Since the dataset is a numpy array or a list of lists (0 based indexing), we have: 
+{% raw %}
+```python
+import numpy as np
+
+movie_column = 0
+user_column = 1
+ratings_column = 2
+```
+{% endraw %}
+
+ The project is then divided in three functions: ```mtxslv_user_ratings()```, ```intersection()``` and ```mtxslv_collab_filter()```. Let's comment each of them.
+
+## Geting the User Ratings
+
+Since the algorithm described in the previous section needs to iterate over each training user, we need to get the training subset that collects all training user rates (notice this subset is $$I_i$$).
+
+{% raw %}
+```python
+def mtxslv_user_ratings(user_id, dataset):
+  subset = [] 
+  for it in range(0,np.shape(dataset)[0]):
+    if (dataset[it,user_column] == user_id):
+      subset.append(dataset[it,:].tolist())  
+  return np.array(subset)
+```
+{% endraw %}
+
+The function receives the ```dataset``` and look for all occurences of ```user_id``` in its ```user_column``` and returns such subset. Notice if no ```user_id``` occurence is found, the function returns an empty numpy array. 
+
+## Getting the Intersection Between Votes
+
+The Collaborative Filtering Algorithm  needs to know what movies both users voted also. Since we have lists for rated movies (one list per user), we just need to get the intersection of such sets. I used a GeekForGeeks code and you can know more reading [their amazing post](https://www.geeksforgeeks.org/python-intersection-two-lists/).
+
+{% raw %}
+```python
+# Python program to illustrate the intersection 
+# of two lists in most simple way 
+# from https://www.geeksforgeeks.org/python-intersection-two-lists/
+def intersection(lst1, lst2): 
+    return list(set(lst1) & set(lst2)) 
+```
+{% endraw %}
+
+## The Collaborative Filtering Code
+
+{% raw %}
+```python
+def mtxslv_collab_filter(instance, product_id,training_set):
+
+  training_set_list = training_set.tolist()
+  average_rating_active_user = np.mean(instance[:,ratings_column])
+  estimation =  average_rating_active_user
+
+  w = [] 
+  k = 0  
+  user_vote_minus_average = []
+
+  user_ids = set(training_set[:,user_column])
+
+  for user in user_ids:
+    user_subset = mtxslv_user_ratings(user,training_set)
+    if(user_subset[:,movie_column].tolist().count(product_id)): 
+      user_average = np.mean(user_subset[:,ratings_column])  
+      movies_both_users_voted = intersection(user_subset[:,movie_column].tolist(),
+                                             instance[:,movie_column].tolist()) 
+      if not( not movies_both_users_voted ):
+        user_index_product_id = user_subset[:,movie_column].tolist().index(product_id) 
+                                                                     
+        w_numerator = 0  
+        w_active_denominator_factor = 0 
+        w_training_usr_denominator_factor = 0 
+
+        for movie in movies_both_users_voted:
+          
+          training_user_index_for_movie = user_subset[:,movie_column].tolist().index(movie)
+          active_user_index_for_movie = instance[:,movie_column].tolist().index(movie)    
+
+          w_numerator = w_numerator + (instance[active_user_index_for_movie,ratings_column]-average_rating_active_user)*(user_subset[training_user_index_for_movie,ratings_column]-user_average)
+          w_active_denominator_factor = w_active_denominator_factor + np.power((instance[active_user_index_for_movie,ratings_column]-average_rating_active_user),2)
+          w_training_usr_denominator_factor = w_training_usr_denominator_factor + np.power( (user_subset[training_user_index_for_movie,ratings_column]-user_average) ,2)
+
+        w.append(w_numerator/np.sqrt(w_active_denominator_factor*w_training_usr_denominator_factor))
+        user_vote_minus_average.append(user_subset[user_index_product_id,ratings_column]-user_average)
+ 
+  if not(not w):
+    k = 1 / np.sum( np.abs(w) )
+
+  if not(not w or not user_vote_minus_average):  
+    estimation =  estimation + k* np.dot(w,user_vote_minus_average) 
+
+  return estimation
+```
+{% endraw %}
 
 coming soon ;)
+
+# References
+
+The learning process often needs the reading of material other people has produced, to understand things we didn't or to find out better ways of doing things we do the old way. Here are the references I accessed:
+
+* https://www.geeksforgeeks.org/python-check-whether-list-empty-not/
+
+* https://stackoverflow.com/questions/21860605/python-remove-lists-from-list-of-lists-similar-functionality-to-pop
+
+* https://www.geeksforgeeks.org/python-intersection-two-lists/
+
+* https://www.programiz.com/python-programming/methods/list/index
