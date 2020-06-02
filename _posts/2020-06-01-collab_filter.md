@@ -32,7 +32,7 @@ The user database consists of a set of votes $$v_{i,j}$$ corresponding to the vo
 
 $$\overline{v_i} = \frac{1}{|I_i|} \sum_{j \in I_i}^{}v_{i,j}$$
 
-We predict the votes of the active user (indicated with a subscript _a_) based on some partial information regarding the active user and a set of weights calculated from the user database. We assume the predicted vote of the active user for item _k_ $$p_{a,k}$$, is a weighted sum of the votes of the other users:
+We predict the votes of the active user (indicated with a subscript _a_) based on some partial information regarding the active user and a set of weights calculated from the user database. We assume the predicted vote of the active user for item _k_ , $$p_{a,k}$$, is a weighted sum of the votes of the other users:
 
 $$p_{a,k} = \overline{v_a} + \kappa \sum_{i=1}^{n} w(a,i)(v_{i,k} - \overline{v_i})$$
 
@@ -42,7 +42,36 @@ For the weights, I use the Pearson correlation coefficient. The correlation betw
 
 $$w(a,i) = \frac{ \sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{a,j} - \overline{v_a} )(v_{i,j} - \overline{v_i}) }{ \sqrt{ \sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{a,j} - \overline{v_a} )^2  \sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{i,j} - \overline{v_i} )^2 } }$$
 
+where the summations over _j_ are over the items for which both users _a_ and _i_ have recorded votes.
+
 The two expressions described above are enough for the collaborative filtering project.
+
+# Algorithm To Be Used
+
+Notice some points to be satisfied by the algorithm during the calculation of $$p_{a,k}$$:
+1. The summation factor in $$p_{a,k}$$ should not account for users that did not vote on item _k_, because item $$v_{i,k}$$ is not defined. Then we must ignore such users.
+2. There can exist an extreme case where the user rated item _k_ but has no other movie in common with the active user, so $$w(a,i)$$ is not defined. 
+3. There can exist an even more extreme case where no $$w(a,i)$$ could be defined. If this happens, I define the estimated rate ($$p_{a,k}$$) as the mean vote of the active user: $$\overline{v_a}$$.
+
+The achieved algorithm to estimate the rating that considers the points above can be read below:
+
+```
+CollaborativeFiltering(active_user,item_to_be_rated, training_set)
+
+* _estimation_ <- the mean of _active user_ votes
+* usersID <- all users' ID from the training set 
+* For each user in usersID, do:
+    - Get user votes (set of logs)
+    - If user voted in item_to_be_rated, do:
+        - Get Items both users (active one and training one) voted in
+        - If Items is not empty:
+          - calculate ```w(a,i)``` and the difference between the user vote on item_to_be_rated and his/her average rate.
+* If ```w(a,i)``` is not empty:
+    - Compute normalizing factor _k_.
+* If ```w(a,i)``` and differences are both non empty:
+    - Add weighting factor to the estimate of active user rate on item_to_be_rated.
+* Return _estimation_
+```
 
 # Code
 
