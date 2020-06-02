@@ -180,10 +180,10 @@ coming soon ;)
 
 The learning process often needs the reading of material other people has produced, to understand things we didn't or to find out better ways of doing things we do the old way. Here are the references I accessed:
 
-* https://www.geeksforgeeks.org/python-check-whether-list-empty-not/
+* [How to know if a list is empty (Geeks For Geeks)?](https://www.geeksforgeeks.org/python-check-whether-list-empty-not/)
 
-* https://stackoverflow.com/questions/21860605/python-remove-lists-from-list-of-lists-similar-functionality-to-pop
+* [Pop a List out of another (StackOverFlow)](https://stackoverflow.com/questions/21860605/python-remove-lists-from-list-of-lists-similar-functionality-to-pop)
 
-* https://www.geeksforgeeks.org/python-intersection-two-lists/
+* [Intersection of Two Lists (Geeks For Geeks)](https://www.geeksforgeeks.org/python-intersection-two-lists/)
 
-* https://www.programiz.com/python-programming/methods/list/index
+* [Python Lists Indexing (Programiz)](https://www.programiz.com/python-programming/methods/list/index)
