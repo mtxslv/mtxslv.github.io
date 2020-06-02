@@ -261,6 +261,7 @@ estimativa = mtxslv_collab_filter(testing_instance,5,training_set_example)
 The manually calculated value is _4.336075363_. 
 Try it yourself: ```estimativa``` equals _4.336096188777122_.
 
+Notice this value makes sense, since Alice's tendencies roughly follow Bob's. Actually, Alice's ratings apparently is one unity above Bob's.
 
 # References
 
