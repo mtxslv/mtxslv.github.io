@@ -65,10 +65,10 @@ CollaborativeFiltering(active_user,item_to_be_rated, training_set)
     - If user voted in item_to_be_rated, do:
         - Get Items both users (active one and training one) voted in
         - If Items is not empty:
-          - calculate ```w(a,i)``` and the difference between the user vote on item_to_be_rated and his/her average rate.
-* If ```w(a,i)``` is not empty:
+          - calculate w(a,i) and the difference between the user vote on item_to_be_rated and his/her average rate.
+* If w(a,i) is not empty:
     - Compute normalizing factor _k_.
-* If ```w(a,i)``` and differences are both non empty:
+* If w(a,i) and differences are both non empty:
     - Add weighting factor to the estimate of active user rate on item_to_be_rated.
 * Return _estimation_
 ```
