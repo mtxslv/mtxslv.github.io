@@ -216,6 +216,7 @@ For an example, let's suppose the following data:
 But the data does not come in this table format. Actually, let's imagine a log file where each row are: _movieID_, _customerID_,_rating_. For simplicity, let's suppose Alice's ID 1, Bob's ID 2, Chris' ID 3 and Diana's 4.
 
 Our _training data_, then, come in the following format. Notice since Alice is the query instance, she does not appear in the training data.
+
 | _movieID_ | _customerID_ | _rating_ |
 | :---: | :---: | :---: |
 | 1 | 2 | 1 |
