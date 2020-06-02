@@ -125,6 +125,8 @@ def intersection(lst1, lst2):
 
 ## The Collaborative Filtering Code
 
+The Collaborative Filtering Code receives the ```instance``` (set of active user logs), the ```product_id``` (what movie the rating must be predicted) and the ```training_set``` (set of instances). These parameter are all numpy arrays. It returns an estimation of the active user vote. 
+
 {% raw %}
 ```python
 def mtxslv_collab_filter(instance, product_id,training_set):
@@ -174,11 +176,94 @@ def mtxslv_collab_filter(instance, product_id,training_set):
 ```
 {% endraw %}
 
-coming soon ;)
+The next step is to get the list of logs from the numpy training set. The mean of the column ```ratings_column``` is the average rating of the active user ($$\overline{v_a}$$). Let's, initially, suppose the active user estimate rating equals his/her average rating.
+
+I allocate an empty list ```w```, which will collect all weights/correlation measures; the normalizing term ```k``` and an empty list ```user_vote_minus_average``` ($$v_{i,k} - \overline{v_i}$$).
+
+Now I get all user ids, so I can iterate user by user. Then, for each _training set user_ I get his/her subset and, if this user has voted/rated ```product_id```, I begin two main calculations:
+
+1. Compute this ```user_average``` ratings;
+2. Get the intersection of movie lists, that is, ```movies_both_users_voted```. If such list is not empty, we do the following...
+
+Get the index in ```user_subset``` where ```product_id``` appears (```user_index_product_id```).
+
+Allocate the following values: ```w_numerator``` ($$ \sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{a,j} - \overline{v_a} )(v_{i,j} - \overline{v_i})$$), ```w_active_denominator_factor``` ($$\sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{a,j} - \overline{v_a} )^2$$) and ```w_training_usr_denominator_factor``` ($$\sum_{}^{}\mathop{}_{\mkern-5mu j} (v_{i,j} - \overline{v_i} )^2$$).
+
+Now it begins another iterating process (for each _movie_ in ```movies_both_users_voted```): get the ratings and compute ```w_numerator```, ```w_active_denominator_factor``` and ```w_training_usr_denominator_factor```.
+
+Now append the computation of $$w(a,i)$$ in ```w``` list and append the computation of $$v_{i,k} - \overline{v_i}$$ in ```user_vote_minus_average```.
+
+All the previous processes are nested loops. After they are over, I check if ```w``` is empty: if not, ```k``` equals the inverse of the sum of the absolute ```w``` values.
+
+If ```w``` and ```user_vote_minus_average``` **are non empty at the same time** I update the ```estimation``` value due to the addition of the scaled (multiplied by ```k```) dot product of ```w``` and ```user_vote_minus_average``` (this dot product is the same thing as $$\sum_{i=1}^{n} w(a,i)(v_{i,k} - \overline{v_i})$$).
+
+The function returns ```estimation```.
+
+# A Brief Example
+
+For an example, let's suppose the following data:
+* There are 6 products (R1,R2,R3,R4,R5 and R6);
+* There are 3 "training set" users (Bob, Chris and Diana);
+* The query instance is Alice's ratings on the 5.
+
+| User/Product | R1 | R2 | R3 | R4 | R5 | R6 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| Alice  | 2  | - | 4 | 4 | - | 5 |
+| Bob | 1 | 5 | 4 | - | 3 | 4 |
+| Chris  | 5 | 2 | - | 2 | 1 | - |
+| Diana | 3 | - | 2 | 2 | - | 4 |
+
+But the data does not come in this table format. Actually, let's imagine a log file where each row are: _movieID_, _customerID_,_rating_. For simplicity, let's suppose Alice's ID 1, Bob's ID 2, Chris' ID 3 and Diana's 4.
+
+Our _training data_, then, come in the following format. Notice since Alice is the query instance, she does not appear in the training data.
+| _movieID_ | _customerID_ | _rating_ |
+| :---: | :---: | :---: |
+| 1 | 2 | 1 |
+| 2 | 2 | 5 |
+| 3 | 2 | 4 |
+| 5 | 2 | 3 |
+| 6 | 2 | 4 |
+| 1 | 3 | 5 |
+| 2 | 3 | 2 |
+| 4 | 3 | 2 |
+| 5 | 3 | 1 |
+| 1 | 4 | 3 |
+| 3 | 4 | 2 |
+| 4 | 4 | 2 |
+| 6 | 4 | 4 |
+
+Query instance (Alice's logs) is:
+
+| _movieID_ | _customerID_ | _rating_ |
+| :---: | :---: | :---: |
+| 1 | 1 | 2 |
+| 3 | 1 | 4 |
+| 4 | 1 | 4 |
+| 6 | 1 | 5 |
+
+What we want to know (to predict) is Alice's rate on movie 5. We can easily estimate this value using ```mtxslv_collab_filter()```. Let's define training and testing data:
+
+```python
+training_set_example = np.array([[1,2,1],[2,2,5],[3,2,4],[5,2,3],
+                         [6,2,4],[1,3,5],[2,3,2],[4,3,2],
+                         [5,3,1],[1,4,3],[3,4,2],[4,4,2],
+                         [6,4,4]])
+
+testing_instance = np.array([[1,1,2],[3,1,4],[4,1,4],[6,1,5]])
+```
+
+Now apply the function!
+
+```python
+estimativa = mtxslv_collab_filter(testing_instance,5,training_set_example)
+```
+The manually calculated value is _4.336075363_. 
+Try it yourself: ```estimativa``` equals _4.336096188777122_.
+
 
 # References
 
-The learning process often needs the reading of material other people has produced, to understand things we didn't or to find out better ways of doing things we do the old way. Here are the references I accessed:
+The learning process often needs the reading of material other people has produced, to understand things we didn't or to find out better ways of doing things we do the old way. Here are the references I accessed  during the designing process:
 
 * [How to know if a list is empty (Geeks For Geeks)?](https://www.geeksforgeeks.org/python-check-whether-list-empty-not/)
 
@@ -187,3 +272,5 @@ The learning process often needs the reading of material other people has produc
 * [Intersection of Two Lists (Geeks For Geeks)](https://www.geeksforgeeks.org/python-intersection-two-lists/)
 
 * [Python Lists Indexing (Programiz)](https://www.programiz.com/python-programming/methods/list/index)
+
+* [Collaborative Filtering Paper](https://courses.cs.washington.edu/courses/csep546/17au/psetwww/2/algsweb.pdf)
