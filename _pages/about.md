@@ -2,7 +2,9 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/nasa_spacecraft_cropped.jpg"
+  overlay_image: "/images/ALMA@noche.jpg"
+  overlay_filter: 0.5
+  caption: " "File:ALMA@noche.jpg" by Silvio Rossi is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0 "
 author_profile: true  
 toc: true
 ---  
