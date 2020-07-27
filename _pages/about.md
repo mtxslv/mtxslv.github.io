@@ -4,6 +4,7 @@ permalink: /about/
 header:
   overlay_image: "/images/ALMA@noche.jpg"
   overlay_filter: 0.5
+  caption: "CC"
 author_profile: true  
 toc: true
 ---  
