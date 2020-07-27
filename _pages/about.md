@@ -1,10 +1,10 @@
 ---
-title: "About"
+title: "AboUt"
 permalink: /about/
 header:
   overlay_image: "/images/ALMA@noche.jpg"
-  overlay_filter: 0.1
-  caption: " 'File:ALMA@noche.jpg' by Silvio Rossi is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0 "
+  overlay_filter: 0.0
+  caption: " 'File:ALMA@noche.jpg' by Silvio Rossi is licensed under CC BY 3.0. To view a copy of this license, visit [https://creativecommons.org/licenses/by/3.0](https://creativecommons.org/licenses/by/3.0) "
 author_profile: true  
 toc: true
 ---  
