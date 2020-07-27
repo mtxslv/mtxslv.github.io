@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/ALMA@noche.jpg"
+  overlay_image: "/images/ALMA@noche.jpg"
 author_profile: true  
 toc: true
 ---  
