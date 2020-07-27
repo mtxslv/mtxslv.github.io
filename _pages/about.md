@@ -13,12 +13,9 @@ toc: true
 
 ## Skills
 
-* Programming languages: C, C++ and Python.
-* API: familiarity with TensorFlow and Scikit.
+* Programming languages: C, C++, MATLAB and Python.
 * OS: Linux (Ubuntu).
 * Hardware: Arduino.
-
-_Currently studying Machine Learning_
 
 ## Education
 
