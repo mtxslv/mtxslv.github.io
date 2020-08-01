@@ -2,7 +2,9 @@
 title: "Personal Bibliography"
 permalink: /my_bibliography/
 header:
-  image: "/images/moon_over_bridge.jpeg"
+  overlay_image: "/images/25656735432_780ff9e01c_b.jpg"
+  overlay_filter: 0.0
+  caption: " 'Morning Light on the Books' by cogdogblog is licensed under CC BY 2.0  "
 author_profile: true  
 toc: true
 ---  
