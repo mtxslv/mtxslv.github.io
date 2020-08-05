@@ -27,3 +27,7 @@ toc: true
 ## Published Papers 
 
 [Protótipo de Um Robô Móvel Seguidor de Linha de Baixo Custo Construído com Alumínio Reciclado](http://sistemaolimpo.org/midias/uploads/40e99c88e4df68733d9fc3a4ac38d794.pdf). Sistema Olimpo. MNR.
+
+## What Am I Doing Currently?
+
+I am currently studying Deep Learning.
