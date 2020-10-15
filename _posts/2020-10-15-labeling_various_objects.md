@@ -63,10 +63,10 @@ No mistery in this introductory part: let's include the necessary libraries.
 * iostream: input/output stream objects;
 * opencv: the image processing library I'm using.
 
-I define some objects also:
+I define some objects also :
 * ```Mat``` object that will contain n-dimensional dense arrays: ```image``` will contain the original image;
 * ```int``` objects needed to display the ```width``` and the ```height``` of the ```image```
-* ```float``` objects needed for the counting: ```counting_constant``` and the ```floating_counting```.
+* ```float``` objects needed for the counting: ```counting_constant``` and the ```floating_counting```. Note these variables were arbitrary initialized;
 * ```Point``` object needed as a parameter for the OpenCV ```floodfill``` implemented algorithm. 
 
 {% raw %}
@@ -88,6 +88,9 @@ In the previous chunk of the code I read the image on the path defined on ```arg
 
 {% raw %}
 ```cpp
+  p.x=0;
+  p.y=0;
+
   do{
     std::cout<<"please insert counting constant: \n";
     std::cin>>counting_constant;
@@ -95,39 +98,39 @@ In the previous chunk of the code I read the image on the path defined on ```arg
 ```
 {% endraw %}
 
+In the previous part, the code asks for the ```counting_contant```, and make sure it has valid value. Notice It will be used as a fraction's denominator, then it needs to be between 0 and 1.
 
-
-{% raw %}
-```cpp
-
-```
-{% endraw %}
-
-
-
+I also initialize ```Pointer p``` coordinates arbitrary.
 
 {% raw %}
 ```cpp
-
+  for(int i=0; i<height; i++){
+    for(int j=0; j<width; j++){
+      if(image.at<uchar>(i,j) == 255){
+        // achou um objeto
+        floating_counting = floating_counting + counting_constant;
+        p.x=j;
+        p.y=i;
+  		// preenche o objeto com o contador
+		  cv::floodFill(image,p,floating_counting);
+      }
+    }
+  }
+  std::cout << "a figura tem " << floating_counting/counting_constant << " bolhas\n";
+  
 ```
 {% endraw %}
 
+This portion of the code does the object counting itself. Notice it will iterate over the pixels of the image, going from the top-left corner until it reaches the bottom right corner, checking if any of them have value equal to 255. If so,  we increment the variable ```floating_counting```, set ```Point p``` to that pixel location and apply OpenCV ```floodfill``` algorithm implementation. Lastly it is displayed how many objects were found.
 
 {% raw %}
 ```cpp
-
+  cv::imshow("image", image);
+  cv::waitKey();
+  
+  return 0;
+}
 ```
 {% endraw %}
 
-{% raw %}
-```cpp
-
-```
-{% endraw %}
-
-
-{% raw %}
-```cpp
-
-```
-{% endraw %}
+The last thing to be done is to show the "floodfilled" image. It will keep such window opened until some key is pressed.
