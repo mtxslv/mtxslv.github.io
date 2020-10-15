@@ -38,7 +38,9 @@ nobjects = floating_counting/floating_constant
 ```
 
 
-We must to pay attention on the value of the ```floating_constant``` also. Such parameter should be chosen by the user. For example, if
+We must to pay attention on the value of the ```floating_constant``` also. Such parameter should be chosen by the user. For example, if ```floating_constant=0.5```, the code can counts up to ```2*254=508``` objects. Why to limit the counting up to "254 objects"?
+
+**Watch Out! Later in the code I'll use ```imshow()```. [As can be seen here](https://answers.opencv.org/question/83562/why-pixels-can-have-float-values/), opencv can display "float images" _that are bound between 0...255_.**
 
 It is important to notice that
 
