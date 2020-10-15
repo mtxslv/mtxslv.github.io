@@ -37,14 +37,11 @@ Then we just need to do:
 nobjects = floating_counting/floating_constant
 ```
 
-
 We must to pay attention on the value of the ```floating_constant``` also. Such parameter should be chosen by the user. For example, if ```floating_constant=0.5```, the code can counts up to ```2*254=508``` objects. Why to limit the counting up to "254 objects"?
 
-**Watch Out! Later in the code I'll use ```imshow()```. [As can be seen here](https://answers.opencv.org/question/83562/why-pixels-can-have-float-values/), opencv can display "float images" _that are bound between 0...255_.**
+**Watch Out! Later in the code I'll use ```imshow()```. [As can be seen here](https://answers.opencv.org/question/83562/why-pixels-can-have-float-values/), opencv can display only "float images" _that are bound between 0...255_.**
 
-It is important to notice that
-
-Ok, here we go!
+Ok, let's dive in the code!
 
 {% raw %}
 ```cpp
@@ -53,10 +50,60 @@ Ok, here we go!
 
 
 int main(int argc, char** argv){
-  cv::Mat image, realce;
+  cv::Mat image;
   int width, height;
+  float counting_constant= -1; // arbitrary initialization 
+  float floating_counting = 0;   
+  cv::Point p;  
 ```
 {% endraw %}
+
+No mistery in this introductory part: let's include the necessary libraries.
+
+* iostream: input/output stream objects;
+* opencv: the image processing library I'm using.
+
+I define some objects also:
+* ```Mat``` object that will contain n-dimensional dense arrays: ```image``` will contain the original image;
+* ```int``` objects needed to display the ```width``` and the ```height``` of the ```image```
+* ```float``` objects needed for the counting: ```counting_constant``` and the ```floating_counting```.
+* ```Point``` object needed as a parameter for the OpenCV ```floodfill``` implemented algorithm. 
+
+{% raw %}
+```cpp
+  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+  
+  if(!image.data){
+    std::cout << "imagem nao carregou corretamente\n";
+    return(-1);
+  }
+
+  width=image.cols;
+  height=image.rows;
+  std::cout << width << "x" << height << std::endl;
+```
+{% endraw %}
+
+In the previous chunk of the code I read the image on the path defined on ```argv[1]``` parameter and check if it's fine (if something goes wrong, let's stop the code with a message). If everything is okay, the code read the image dimension and displays it on the terminal. 
+
+{% raw %}
+```cpp
+  do{
+    std::cout<<"please insert counting constant: \n";
+    std::cin>>counting_constant;
+  }while((counting_constant<0)||(counting_constant>1));
+```
+{% endraw %}
+
+
+
+{% raw %}
+```cpp
+
+```
+{% endraw %}
+
+
 
 
 {% raw %}
@@ -72,6 +119,11 @@ int main(int argc, char** argv){
 ```
 {% endraw %}
 
+{% raw %}
+```cpp
+
+```
+{% endraw %}
 
 
 {% raw %}
