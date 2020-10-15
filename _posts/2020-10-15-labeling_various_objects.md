@@ -142,9 +142,9 @@ The last thing to be done is to show the "floodfilled" image. It will keep such 
 
 Let's run the code on the terminal passing as argument the file path (later it is necessary to define the constant):
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-opencv_basics_regions/running.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-labeling_various_objects/running.png" alt="">
 
 And here we can the result:
 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-opencv_basics_regions/result.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-labeling_various_objects/result.png" alt="">
