@@ -5,6 +5,7 @@ tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
 toc: true
 author_profile: true
+mathjax = true
 ---
 
 Hey there! How are you all? Hope you're healthy. 
@@ -18,7 +19,7 @@ I'll address the following task troughout this post:
 
 Professor Agostinho explains the pseudo-code for doing this during his [labeling lesson](https://youtu.be/aexbvMzCGK4?t=1194). Right below I will summarize the main ideas:
 * the first thing to do is to remove bubbles that touches the margin. To accomplish this, iterate over the margin pixels and apply floodfill when you find any bubble. Remember: it is a binary image, and the black background has null intensity while the forefront objects has full intensity (255). Then, the floodfill's seed parameter must be 0. 
-* Now the margin is clean. Apply Agostinho's [labeling algorithm](https://agostinhobritojr.github.io/tutorial/pdi/#exa_labeling) to make all the remaining bubbles be filled with values inside the range $$[1,254]$$.
+* Now the margin is clean. Apply Agostinho's [labeling algorithm](https://agostinhobritojr.github.io/tutorial/pdi/#exa_labeling) to make all the remaining bubbles be filled with values inside the range $$\[1,254\]$$.
 * Notice that every "bubble body" must be filled with values between 0 and 255. Notice the only areas with 0 value are the bubbles' holes and the background. Apply floodfill with seed equal to 255 on the background, and the only remaining zero-filled areas will be the bubbles' holes.
 * Now iterate over the images' pixels, going from the top-left until reaching the bottom-right. If we have found pixels with zero value, we have actually found a hole and hence a bubble with it. If we count every bubble with hole, the amount of bubbles with no hole is just the difference between all the known values and such value.
 * To make our code work properly, every time we find a hole, we must floodfill it with seed equal to 255. We must floodfill the associated bubble also. To do this we just need to go back one pixel to the left and floodfill it. This will "erase" the bubble.
@@ -111,7 +112,7 @@ In order to avoid writing four outer ```for loops``` (since each of them will ha
 * ```colunas_esquerda_e_direita```: this array contains the leftmost and rightmost column;
 * ```linhas_topo_e_fundo```: this array contains the top and bottom lines.
 
-How will they be used? Let's create two _for nested loops_ : the first of them iterates over the first and last lines of the image; and the last one iterates over the first and last columns of the image. If any found pixel has intensity equal to 255 (a forefront object: a bubble), floodfill is applied ($ seed=0 $) and the bubble is erased.
+How will they be used? Let's create two _for nested loops_ : the first of them iterates over the first and last lines of the image; and the last one iterates over the first and last columns of the image. If any found pixel has intensity equal to 255 (a forefront object: a bubble), floodfill is applied ($$seed=0$$) and the bubble is erased.
 
 It counts how many bubbles were erased also. It shows the original image and that without bubbles touching the margins as well.
 
