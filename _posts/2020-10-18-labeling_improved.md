@@ -5,7 +5,7 @@ tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
 toc: true
 author_profile: true
-mathjax = true
+mathjax: true
 ---
 
 Hey there! How are you all? Hope you're healthy. 
