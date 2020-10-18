@@ -1,6 +1,6 @@
 ---
 title: "Improving Labelling"
-date: 2020-10-18
+date: 2020-10-15
 tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
 toc: true
