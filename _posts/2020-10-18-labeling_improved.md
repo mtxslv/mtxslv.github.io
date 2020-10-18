@@ -196,11 +196,10 @@ At the end of the program, it displays the counters and the processed image (ori
 
 # Example
 
-Let's run the code on the terminal passing as argument the file path (later it is necessary to define the constant):
+Let's run the code on the terminal passing as argument the file path:
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-labeling_various_objects/running_code.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-18-labeling_improved/terminal.png" alt="">
 
 And here we can the result:
-
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-15-labeling_various_objects/result.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-18-labeling_improved/imshow1.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-18-labeling_improved/imshow2.png" alt="">
