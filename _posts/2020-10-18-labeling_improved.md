@@ -18,7 +18,7 @@ I'll address the following task troughout this post:
 
 Professor Agostinho explains the pseudo-code for doing this during his [labeling lesson](https://youtu.be/aexbvMzCGK4?t=1194). Right below I will summarize the main ideas:
 * the first thing to do is to remove bubbles that touches the margin. To accomplish this, iterate over the margin pixels and apply floodfill when you find any bubble. Remember: it is a binary image, and the black background has null intensity while the forefront objects has full intensity (255). Then, the floodfill's seed parameter must be 0. 
-* Now the margin is clean. Apply Agostinho's [labeling algorithm](https://agostinhobritojr.github.io/tutorial/pdi/#exa_labeling) to make all the remaining bubbles be filled with values inside the range $\[1,254\]$.
+* Now the margin is clean. Apply Agostinho's [labeling algorithm](https://agostinhobritojr.github.io/tutorial/pdi/#exa_labeling) to make all the remaining bubbles be filled with values inside the range $$\[1,254\]$$.
 * Notice that every "bubble body" must be filled with values between 0 and 255. Notice the only areas with 0 value are the bubbles' holes and the background. Apply floodfill with seed equal to 255 on the background, and the only remaining zero-filled areas will be the bubbles' holes.
 * Now iterate over the images' pixels, going from the top-left until reaching the bottom-right. If we have found pixels with zero value, we have actually found a hole and hence a bubble with it. If we count every bubble with hole, the amount of bubbles with no hole is just the difference between all the known values and such value.
 * To make our code work properly, every time we find a hole, we must floodfill it with seed equal to 255. We must floodfill the associated bubble also. To do this we just need to go back one pixel to the left and floodfill it. This will "erase" the bubble.
@@ -111,7 +111,7 @@ In order to avoid writing four outer ```for loops``` (since each of them will ha
 * ```colunas_esquerda_e_direita```: this array contains the leftmost and rightmost column;
 * ```linhas_topo_e_fundo```: this array contains the top and bottom lines.
 
-How will they be used? Let's create two _for nested loops_ : the first of them iterates over the first and last lines of the image; and the last one iterates over the first and last columns of the image. If any found pixel has intensity equal to 255 (a forefront object: a bubble), floodfill is applied ($ seed=0 $) and the bubble is erased.
+How will they be used? Let's create two _for nested loops_ : the first of them iterates over the first and last lines of the image; and the last one iterates over the first and last columns of the image. If any found pixel has intensity equal to 255 (a forefront object: a bubble), floodfill is applied ($$ seed=0 $$) and the bubble is erased.
 
 It counts how many bubbles were erased also. It shows the original image and that without bubbles touching the margins as well.
 
@@ -143,26 +143,6 @@ This part is default labeling: iterate over the image, from the top-left to bott
 
 {% raw %}
 ```cpp
-  for(int i=0; i<height; i++){
-    for(int j=0; j<width; j++){
-      if(image.at<uchar>(i,j) == 255){
-        // achou um objeto
-        floating_counting = floating_counting + counting_constant;
-        p.x=j;
-        p.y=i;
-  		// preenche o objeto com o contador
-		  cv::floodFill(image,p,floating_counting);
-      }
-    }
-  }
-  std::cout << "a figura tem " << floating_counting/counting_constant << " bolhas\n";
-  
-```
-{% endraw %}
-
-
-{% raw %}
-```cpp
  // pintar o fundo com 255
   p.x = 0; 
   p.y = 0;
@@ -173,6 +153,7 @@ This part is default labeling: iterate over the image, from the top-left to bott
 ```
 {% endraw %}
 
+No bubble touches the margin, right? If we want to floodfill the background with 255, we can choose the top-left pixel as the algorithm seed parameter! 
 
 {% raw %}
 ```cpp
@@ -195,6 +176,8 @@ This part is default labeling: iterate over the image, from the top-left to bott
 ```
 {% endraw %}
 
+Now the program iterates over the image looking for the pixels with values equal to 0. When it finds one, it applies floodfill with seed equal to 255 to it and to the pixel at the left-hand side. It increments the associated counter (```nobjects_hole```) also.
+
 {% raw %}
 ```cpp
   std::cout << "a figura tem " << nobjects_hole << " bolhas com furos \n";
@@ -209,6 +192,7 @@ This part is default labeling: iterate over the image, from the top-left to bott
 ```
 {% endraw %}
 
+At the end of the program, it displays the counters and the processed image (original one and the equalized one).  
 
 # Example
 
