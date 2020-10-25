@@ -334,14 +334,14 @@ If you read until here, I would like to thank you for the patience and the curio
 
 # Images to Amaze yourself:
 
-* (Brazilian Beaches with Mountains)[https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d]
+* [Brazilian Beaches with Mountains](https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d)
 
-* (Rio de Janeiro)[https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3]
+* [Rio de Janeiro](https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3)
 
-* (Biblioteca Real Gabinete Portugues de Leitura Rio de Janeiro Brazil)[https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938]
+* [Biblioteca Real Gabinete Portugues de Leitura Rio de Janeiro Brazil](https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938)
 
-* (Rio de Janeiro)[https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54]
+* [Rio de Janeiro](https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54)
 
-* (File:Vista aérea Centro do Rio de Janeiro RJ.jpg )[https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0]
+* [File:Vista aérea Centro do Rio de Janeiro RJ.jpg](https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0)
 
-* (Brazilian Beach with Mountains)[https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e]
+* [Brazilian Beach with Mountains](https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e)
