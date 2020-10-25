@@ -41,11 +41,11 @@ At the top of the code I include some libraries useful for the processing:
 * ```opencv```: the leading character of our project
 * ```cmath```: I'll need to use a function to calculate the hyperbolic tangent of a number.
 
-I define important ```cv::Mat``` variables also:
+I define important ```cv::Mat``` global variables also:
 *```image1```: the original image;
 *```image1_borrada```: a ```cv::Mat``` object to contain the gaussian blured image;
 *```img_ponder```: a weight matrix;
-*```img_ponder_negativo```: another weight matrix, defined as ```img_ponder - 1```;
+*```img_ponder_negativo```: another weight matrix, defined as ```1 - img_ponder```;
 *```imagem_renderizada```: the last result, defined as the element-wise linear combination of the original image and its blured counterpart.
 
 ## The calculation of alpha
@@ -148,7 +148,7 @@ const int coef_slider_max = 100;
 ```
 {% endraw %}
 
-The first step is to create three variables to each slider: one of them will store the maximum value of the slider (here I am using 100 as ```const int``` to all of them); the second one will keep the slider value itself (the ```int``` variables whose names end with ```_slider```) and the last one defined as the ratio of the first two (here the ```double``` variables). These last ones are being used in the ```gerar_imagem_ponderacao()``` function.
+The first step is to create three global variables to each slider: one of them will store the maximum value of the slider (here I am using 100 as ```const int``` to all of them); the second one will keep the slider value itself (the ```int``` variables whose names end with ```_slider```) and the last one defined as the ratio of the first two (here the ```double``` variables). These last ones are being used in the ```gerar_imagem_ponderacao()``` function.
 
 {% raw %}
 ```cpp
@@ -174,6 +174,64 @@ void on_coef_trackbar(int, void *){
 
 When the slider is changed, a callback function is called. There is one of them for each slider. All of them do the same thing: they calculate the value of the respective ```double``` variable and call ```gerar_imagem_ponderacao()```. Why this? Well, when we change the value of the parameters, we want the ponder matrices to change also. 
 
+## "Rendering" the Image
+
+Up to this point we have the original image, its blured counterpart and the ponder matrices. I must element-wise multiply the blured image by ```img_ponder_negativo```. Why? To create the effect of depth. I must element-wise multiply the original image by ```img_ponder``` also. Why? To create the effect of close-up. And both these products must be in one image, to create the miniaturizing effect we want to see. In other words, I need to sum the products. 
+
+I tried to compose both images some times, and two aspects of OpenCV became clear quickly:
+1. **Do not try to element-wise multiplicate matrices with different sizes (greyscale and color, for example)**: element-wise is _element-wise_ literally. Do not expect OpenCV to have a magic interpretation of what you are trying to do.
+2. **Datype Matters**: ```CV_32F``` and ```CV_8B``` do not get along under multiplication. And it doesn't matter how many functions you look for or how many references you try to find. [They actually have different ranges and display in a different way](https://stackoverflow.com/questions/8377091/what-are-the-differences-between-cv-8u-and-cv-32f-and-what-should-i-worry-about/8377146), then be careful about them.
+
+> Personal confession: to me this part was the tiring one to code because it is necessary type convertions and channel spliting, and you can see how dense, repetitive and confusing the code block below is. But let's walk through it smartly.
+
+{% raw %}
+```cpp
+void montar_imagem(){
+  cv::Mat canais_imagem_original[3];
+  cv::split(image1.clone(),canais_imagem_original);
+
+  cv::Mat canais_imagem_blur[3];
+  cv::split(image1_borrada.clone(),canais_imagem_blur);
+
+  cv::Mat canais_produto_original[3];
+  cv::Mat canais_produto_blur[3];
+
+  cv::Mat canal_convertido_original, produto_nao_convertido_original;
+  cv::Mat canal_convertido_blur, produto_nao_convertido_blur;
+
+  for(int iterador=0;iterador<3;iterador++){
+    canais_imagem_original[iterador].convertTo(canal_convertido_original,CV_32F);
+    cv::multiply(canal_convertido_original,img_ponder,produto_nao_convertido_original);
+    produto_nao_convertido_original.convertTo(canais_produto_original[iterador],CV_8UC3);
+
+    canais_imagem_blur[iterador].convertTo(canal_convertido_blur,CV_32F);
+    cv::multiply(canal_convertido_blur,img_ponder_negativo,produto_nao_convertido_blur);
+    produto_nao_convertido_blur.convertTo(canais_produto_blur[iterador],CV_8UC3); 
+  }
+
+  cv::Mat a_imagem_processada;
+  cv::Mat a_imagem_blur;
+  
+  cv::merge(canais_produto_original,3,a_imagem_processada);
+  cv::merge(canais_produto_blur,3,a_imagem_blur);
+  imagem_renderizada = a_imagem_blur + a_imagem_processada;
+}
+```
+{% endraw %}
+
+The algorithm of processing works the same way for both images (the original one and the blured one), and that's why it seems repetitive. Let's summarize how it goes in a few lines:
+1. Define ```cv::Mat``` array to receive the image channels for both images;
+2. Split the images;
+3. Define ```cv::Mat``` array to colect the products with respect to the channels processed; 
+4. Define ```cv::Mat``` objects to receive transformed channels;
+5. Iterate over the three channels and do:
+    * Convert the channel to ```CV_32F``` (the original image is read in ```CV_8B```) and save it in the appropriate variable;
+    * Multiply such transformed channel by the respective weight matrix; 
+    * Convert the product to ```CV_8B``` again and save it correctly;
+6. Define for each image (original one and blured one) ```cv::Mat``` objects to receive the 3-channel image processed products;
+7. Merge channels;
+8. Sum both images and save them in ```imagem_renderizada```.
+
 {% raw %}
 ```cpp
 
@@ -192,12 +250,8 @@ When the slider is changed, a callback function is called. There is one of them 
 ```
 {% endraw %}
 
-{% raw %}
-```cpp
-
-```
-{% endraw %}
-
+# Example
+eu procurei muitas imagens na Creative Commons. Gosto da iniciativa. Dêm uma olhada em exemplos que eu procurei mas não utilizei.
 
 # References
 
