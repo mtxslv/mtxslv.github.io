@@ -180,7 +180,7 @@ Up to this point we have the original image, its blured counterpart and the pond
 
 I tried to compose both images some times, and two aspects of OpenCV became clear quickly:
 1. **Do not try to element-wise multiplicate matrices with different sizes (greyscale and color, for example)**: element-wise is _element-wise_ literally. Do not expect OpenCV to have a magic interpretation of what you are trying to do.
-2. **Datype Matters**: ```CV_32F``` and ```CV_8B``` do not get along under multiplication. And it doesn't matter how many functions you look for or how many references you try to find. [They actually have different ranges and display in a different way](https://stackoverflow.com/questions/8377091/what-are-the-differences-between-cv-8u-and-cv-32f-and-what-should-i-worry-about/8377146), then be careful about them.
+2. **Datype Matters**: ```CV_32F``` and ```CV_8B``` do not get along under multiplication. And it doesn't matter how many functions you look for or how many references you try to find. [They actually have different ranges ](https://stackoverflow.com/questions/8377091/what-are-the-differences-between-cv-8u-and-cv-32f-and-what-should-i-worry-about/8377146) and [display in a different way](https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html#imshow), then be careful about them.
 
 > Personal confession: to me this part was the tiring one to code because it is necessary type convertions and channel spliting, and you can see how dense, repetitive and confusing the code block below is. But let's walk through it smartly.
 
@@ -221,7 +221,7 @@ void montar_imagem(){
 
 The algorithm of processing works the same way for both images (the original one and the blured one), and that's why it seems repetitive. Let's summarize how it goes in a few lines:
 1. Define ```cv::Mat``` array to receive the image channels for both images;
-2. Split the images;
+2. [Split the images](https://cppsecrets.com/users/203110310511410511510410011599115495764103109971051084699111109/C00-OpenCV-cvsplit.php);
 3. Define ```cv::Mat``` array to colect the products with respect to the channels processed; 
 4. Define ```cv::Mat``` objects to receive transformed channels;
 5. Iterate over the three channels and do:
@@ -232,47 +232,118 @@ The algorithm of processing works the same way for both images (the original one
 7. Merge channels;
 8. Sum both images and save them in ```imagem_renderizada```.
 
+That's all folks!! Now we have the ```montar_imagem()``` function.
+
+# Main Function
+
+The main function do a lot of things. Let's walk through it paying attention to the main points.
+
 {% raw %}
 ```cpp
+int main(int argc, char** argv){
+  image1 = cv::imread(argv[1]);
+
+  if(!image1.data){
+    std::cout << "imagem nao carregou corretamente\n";
+    return(-1);
+  }  
+
+  int width1, height1;  
+  char key;
+
+  //show dimensions
+  width1=image1.cols;
+  height1=image1.rows;
+  std::cout <<"\t width1 = "<< width1 << "\n\t height1 = " << height1 << std::endl;
+
+  img_ponder = cv::Mat(height1,width1,CV_32F);
+
+  // vamos borrar a imagem
+  cv::GaussianBlur(image1,image1_borrada,cv::Size(101,101),1.0,0.0);
+
 
 ```
 {% endraw %}
 
+The function have to be called using command line. The only parameter it receives is the path to the image. Such image is read. If not opened, the code finishes. If everything is fine, ```int``` variables are defined to save the image dimensions (which is displayed on terminal and used to initialize ```img_ponder``` object).
+
+The opened image is blured with a Gaussian Filter (here I am arbitrary using a filter with size 101x101).
+
+A ```char``` variable named ```key``` is allocated. It will be used to decide if the processed images must me saved or not. 
+
 {% raw %}
 ```cpp
+  // a partir daqui cria-se a janela
+  cv::namedWindow("Tiltshift Screen");
 
+  char TrackbarName[50];
+  
+  std::sprintf(TrackbarName, "center x %d :", x0_slider_max);
+  cv::createTrackbar(TrackbarName,"Tiltshift Screen", &x0_slider, x0_slider_max, on_x0_trackbar);
+  on_x0_trackbar(x0_slider,0);
+
+  std::sprintf(TrackbarName, "band x %d :", band_slider_max);
+  cv::createTrackbar(TrackbarName,"Tiltshift Screen", &band_slider, band_slider_max, on_band_trackbar);
+  on_band_trackbar(band_slider,0);  
+
+  std::sprintf(TrackbarName, "coef x %d :", coef_slider_max);
+  cv::createTrackbar(TrackbarName,"Tiltshift Screen", &coef_slider, coef_slider_max, on_coef_trackbar);
+  on_coef_trackbar(coef_slider,0); 
+
+  key = (char)  cv::waitKey(0);
+  if(key == 32){
+    //salvar imagens
+    cv::imwrite("./exercises_images/result_tiltshift.png",imagem_renderizada);
+    cv::imwrite("./exercises_images/negative_ponder.png",255*img_ponder_negativo);
+    cv::imwrite("./exercises_images/ponder_matrix.png",255*img_ponder);
+    std::cout<<"imagens salvas!"<<std::endl;
+  }  
+
+  return 0;
+}
 ```
 {% endraw %}
 
-{% raw %}
-```cpp
-
-```
-{% endraw %}
+A window named _Tiltshift Screen_ is opened and three sliders are attached to it. It waits until the user presses any key. If the key is the _spacebar_, the weight matrices are saved alongiside the ```imagem_renderizada```.
 
 # Example
-eu procurei muitas imagens na Creative Commons. Gosto da iniciativa. Dêm uma olhada em exemplos que eu procurei mas não utilizei.
 
-# References
+To create a nice tiltshift effect I looked for images of brazilian beaches on [Creative Commons](https://search.creativecommons.org/). I personally love the initiative, and if you want to learn a little more about how copyright works, I strongly recommend you to take a look at [this fabolous post ](https://bit.ly/3im3bzz). During the serch, I found a lot of beautiful pictures of my country's seashores. I needed to select one, but if you want to take a look at the pictures, I'll leave a list of them at the end of this post 
 
-[imshow opencv](https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html#imshow)
+I will use "Brazilian Beach with Mountains" by Club Med - Discover a New World (licensed under CC BY-NC 2.0). You can take a look at the image [by clicking here](https://www.flickr.com/photos/127971456@N05/15339263352). The image is saved in the project folder, and you can know more about my projects on OpenCV [by following this link](https://github.com/mtxslv/dca0445_dip).
 
+Let's run the command line:
 
+{% raw %}
+```cpp
+make ./exercises/tiltshift
+./exercises/tiltshift exercises_images/brazilian_beach_with_mountains_large.jpg
+```
+{% endraw %}
 
-https://stackoverflow.com/questions/14028193/size-of-matrix-opencv
+I played around with the sliders for a little bit. Here we have the result:
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-23-tiltshift/ponder_matrix.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-23-tiltshift/negative_ponder.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/posts_images/2020-10-23-tiltshift/result_tiltshift.png" alt="">
 
-https://cppsecrets.com/users/203110310511410511510410011599115495764103109971051084699111109/C00-OpenCV-cvsplit.php
+The first image is the ponder matrix and the second one is the complement of it. Notice that, in the areas one image is white, the other one is black, and vice-versa.
 
-images:
+The last image is the result of the tiltshift effect. Notice how the most part of the image is blured, and only the area where the ponder matrix is white is on focus.
 
-https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3
+If you read until here, I would like to thank you for the patience and the curiosity. If you want to learn about what I am working with (AI or Computer Vision or whatever) please read another post (or don't). :)
 
-https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938
+# Images to Amaze yourself:
 
-https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54
+* https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d
 
-https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0
+* https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3
 
-https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d
+* https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938
 
-https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e
+* https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54
+
+* https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0
+
+* https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d
+
+* https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e
