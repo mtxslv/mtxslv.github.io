@@ -10,10 +10,23 @@ toc: true
 author_profile: true
 ---
 
+Hey there! Have you watched the video starting this post? Stunning, right? People looks like tiny ants in a toy world, uh? Such witchcraft has a name. It is called [tiltshiftiny](https://en.wikipedia.org/wiki/Tilt%E2%80%93shift_photography). According to Wikipedia, it is defined as
 
+> Tilt–shift photography is the use of camera movements that change the orientation or position of the lens with respect to the film or image sensor on cameras. 
 
+> Sometimes the term is used when the large depth of field is simulated with digital post-processing; the name may derive from a perspective control lens (or tilt–shift lens) normally required when the effect is produced optically.
 
+> "Tilt–shift" encompasses two different types of movements: rotation of the lens plane relative to the image plane, called tilt, and movement of the lens parallel to the image plane, called shift. 
 
+The trick used in video has a very explicit name: [miniature faking](https://en.wikipedia.org/wiki/Miniature_faking). I love to know how magic illusions are made, and I'd like to share how to turn real world images into these tiny scenes. _And... no. It does not involve the usage of pym particles_
+
+<figure>
+  <img src="{{ '/images/posts_images/2020-10-23-tiltshift/pim_building.gif' | relative_url }}" alt="No pym particles here...">
+  <figcaption>Representational Space Evolution</figcaption>
+</figure>
+
+It is actually simpler than that:
+> _Blurring parts of the photo simulates the shallow depth of field normally encountered in close-up photography, making the scene seem much smaller than it actually is; the blurring can be done either optically when the photograph is taken, or by digital postprocessing._ [Wikipedia Definition](https://en.wikipedia.org/wiki/Miniature_faking).
 
 
 references for code:
