@@ -9,9 +9,10 @@ tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
 toc: true
 author_profile: true
+mathjax: true
 ---
 
-Hey there! Have you watched the video starting this post? Stunning, right? People looks like tiny ants in a toy world, uh? Such witchcraft has a name. It is called [tiltshift](https://en.wikipedia.org/wiki/Tilt%E2%80%93shift_photography). According to Wikipedia
+Hey there! Have you watched the video at the top of this post? Stunning, right? People looks like tiny ants in a toy world, uh? Such witchcraft has a name. It is called [tiltshift](https://en.wikipedia.org/wiki/Tilt%E2%80%93shift_photography). According to Wikipedia
 
 > Tilt–shift photography is the use of camera movements that change the orientation or position of the lens with respect to the film or image sensor on cameras. 
 
@@ -29,8 +30,33 @@ The trick used in video has a very explicit name: [miniature faking](https://en.
 It is actually simpler than that:
 > _Blurring parts of the photo simulates the shallow depth of field normally encountered in close-up photography, making the scene seem much smaller than it actually is; the blurring can be done either optically when the photograph is taken, or by digital postprocessing._ [Wikipedia Definition](https://en.wikipedia.org/wiki/Miniature_faking).
 
+Hm... ok ok... Up to this point we _kind of_ know what's happening. To get a more precise idea, I would like to make a reference to my [Digital Image Processing professor's blog](https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_espacial_ii) about the inner works of _tiltshift_. Please, go there and read the section. At the end of it you'll find the details of the code I am about to explain.
 
-references for code:
+# Code
+
+I would like to make a note: the code is somewhat long and non-linear, then I will explain the main ideas and the codes and variables that relate to them.
+
+## The calculation of alpha
+
+As stated in [Agostinho's post](https://agostinhobritojr.github.io/tutorial/pdi/#_filtragem_no_dom%C3%ADnio_espacial_ii), the formula for calculating the alpha (the weight matrix) is 
+
+$$ \alpha(x) = \frac{1}{2}(tanh\frac{x-l1}{d} - tanh\frac{x-l2}{d}) $$.
+
+Notice, in his example, the function is centralized around a value $$x_0$$ that can be found using
+
+$$ x_0 = l1 + l2 $$.
+
+Why is it important? Well, one of the requirements of the project is to control the center of focus using a slider. Such center is $$x_0$$.
+
+Another requirement is to control the width of the focus band using another slider. I will approximate this band such that
+
+$$ l1 = x_0 - band ,$$
+$$ l2 = x_0 + band $$.
+
+
+
+
+# References
 
 [trackbar opencv](https://docs.opencv.org/3.4/da/d6a/tutorial_trackbar.html)
 [imshow opencv](https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html#imshow)
