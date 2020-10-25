@@ -1,8 +1,9 @@
 ---
 title: "Tiltshift"
 header:
-    id: IpCdMGfducg
-    provider: youtube
+    video:
+        id: IpCdMGfducg
+        provider: youtube
 date: 2020-10-18
 tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
