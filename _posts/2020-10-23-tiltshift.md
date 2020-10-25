@@ -310,14 +310,14 @@ A window named _Tiltshift Screen_ is opened and three sliders are attached to it
 
 To create a nice tiltshift effect I looked for images of brazilian beaches on [Creative Commons](https://search.creativecommons.org/). I personally love the initiative, and if you want to learn a little more about how copyright works, I strongly recommend you to take a look at [this fabolous post ](https://bit.ly/3im3bzz). During the serch, I found a lot of beautiful pictures of my country's seashores. I needed to select one, but if you want to take a look at the pictures, I'll leave a list of them at the end of this post 
 
-I will use "Brazilian Beach with Mountains" by Club Med - Discover a New World (licensed under CC BY-NC 2.0). You can take a look at the image [by clicking here](https://www.flickr.com/photos/127971456@N05/15339263352). The image is saved in the project folder, and you can know more about my projects on OpenCV [by following this link](https://github.com/mtxslv/dca0445_dip).
+I will use "Brazil - A view of Rio de Janeiro from Christ the Redeemer" by sandeepachetan.com (licensed under CC BY-NC-ND 2.0). You can take a look at the image [by clicking here](https://www.flickr.com/photos/95012188@N02/23203525324). The image is saved in the project folder, and you can know more about my projects on OpenCV [by following this link](https://github.com/mtxslv/dca0445_dip).
 
 Let's run the command line:
 
 {% raw %}
 ```cpp
 make ./exercises/tiltshift
-./exercises/tiltshift exercises_images/brazilian_beach_with_mountains_large.jpg
+./exercises/tiltshift exercises_images/Brazil_-_A_view_of_Rio_de_Janeiro_from_Christ_the_Redeemer.jpg
 ```
 {% endraw %}
 
@@ -334,16 +334,14 @@ If you read until here, I would like to thank you for the patience and the curio
 
 # Images to Amaze yourself:
 
-* https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d
+* (Brazilian Beaches with Mountains)[https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d]
 
-* https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3
+* (Rio de Janeiro)[https://search.creativecommons.org/photos/379be537-6a19-4e58-8c1d-aa22460a1ff3]
 
-* https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938
+* (Biblioteca Real Gabinete Portugues de Leitura Rio de Janeiro Brazil)[https://search.creativecommons.org/photos/e647aa66-c3f9-476c-a7c4-e5eb84fcc938]
 
-* https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54
+* (Rio de Janeiro)[https://search.creativecommons.org/photos/fd46c192-5bc5-4569-868c-2f9589fbed54]
 
-* https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0
+* (File:Vista aérea Centro do Rio de Janeiro RJ.jpg )[https://search.creativecommons.org/photos/1672c8cf-4cc3-4016-9936-8a327322b0a0]
 
-* https://search.creativecommons.org/photos/eba97784-fce0-43d4-8bd5-61b32780c90d
-
-* https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e
+* (Brazilian Beach with Mountains)[https://search.creativecommons.org/photos/9fa6fc7c-cc54-45db-902a-62dd4658e12e]
