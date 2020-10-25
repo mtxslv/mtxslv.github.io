@@ -11,7 +11,7 @@ toc: true
 author_profile: true
 ---
 
-Hey there! Have you watched the video starting this post? Stunning, right? People looks like tiny ants in a toy world, uh? Such witchcraft has a name. It is called [tiltshiftiny](https://en.wikipedia.org/wiki/Tilt%E2%80%93shift_photography). According to Wikipedia, it is defined as
+Hey there! Have you watched the video starting this post? Stunning, right? People looks like tiny ants in a toy world, uh? Such witchcraft has a name. It is called [tiltshift](https://en.wikipedia.org/wiki/Tilt%E2%80%93shift_photography). According to Wikipedia
 
 > Tilt–shift photography is the use of camera movements that change the orientation or position of the lens with respect to the film or image sensor on cameras. 
 
@@ -23,7 +23,7 @@ The trick used in video has a very explicit name: [miniature faking](https://en.
 
 <figure>
   <img src="{{ '/images/posts_images/2020-10-23-tiltshift/pim_building.gif' | relative_url }}" alt="No pym particles here...">
-  <figcaption>Representational Space Evolution</figcaption>
+  <figcaption>No pym particles here</figcaption>
 </figure>
 
 It is actually simpler than that:
