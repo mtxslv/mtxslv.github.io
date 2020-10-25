@@ -53,7 +53,51 @@ Another requirement is to control the width of the focus band using another slid
 $$ l1 = x_0 - band ,$$
 $$ l2 = x_0 + band $$.
 
+The $$d$$ parameter must be controled using slider also. But such value is directly read from the visual icon, so there is nothing else to discuss about it.
 
+Ok, now let's move to the code
+
+{% raw %}
+```cpp
+float alpha(float domain_point,float x0, float b,float d){
+  float l1 = x0 - b;
+  float l2 = x0 + b;
+  float y = 0.5*(tanhf((domain_point-x0-l1)/d)-tanhf((domain_point-x0-l2)/d));
+  return y;
+}
+```
+{% endraw %}
+
+The previous function is pretty straightforward: it receives 3 parameters:
+* ```domain_point``` is the _x_ in the equation;
+* ```x0``` is the point around which the curve centralizes; 
+* ```b``` the _band_ parameter will be used to define l1 and l2;
+* ```d``` is the parameter that controls the spread of the curve.
+
+This function implements the calculation of alpha defined as before. It is stored in ```y``` and returned.
+
+## Weight Matrices
+
+
+
+
+{% raw %}
+```cpp
+
+```
+{% endraw %}
+
+{% raw %}
+```cpp
+
+```
+{% endraw %}
+
+{% raw %}
+```cpp
+
+```
+{% endraw %}
 
 
 # References
