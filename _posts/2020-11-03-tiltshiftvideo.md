@@ -60,7 +60,7 @@ From this point [to line 144](https://github.com/mtxslv/dca0445_dip/blob/master/
 {% raw %}
 ```cpp
     // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file. 
-	  cv::VideoWriter video("./exercises_images/stopmotion.avi",CV_FOURCC('M','J','P','G'),10, cv::Size(cap.get(CV_CAP_PROP_FRAME_WIDTH),cap.get(CV_CAP_PROP_FRAME_HEIGHT))); 
+	  cv::VideoWriter video("./exercises_images/stopmotion.mp4",CV_FOURCC('M','J','P','G'),10, cv::Size(cap.get(CV_CAP_PROP_FRAME_WIDTH),cap.get(CV_CAP_PROP_FRAME_HEIGHT))); 
 ```
 {% endraw %}
 
@@ -164,7 +164,7 @@ The warning is only telling us a variable is not being used. Do not worry about 
 After playing around with the sliders, we have the following result:
 
 <video width="480" height="320" controls="controls">
-  <source src="/images/posts_images/2020-11-03-tiltshiftvideo/stopmotion.avi" type="video/avi">
+  <source src="/images/posts_images/2020-11-03-tiltshiftvideo/stopmotion.mp4" type="video/mp4">
 </video>
 
 # More References To Make this Post Possible
