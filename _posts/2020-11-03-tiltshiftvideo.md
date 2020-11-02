@@ -1,5 +1,5 @@
 ---
-title: "Tiltshift"
+title: "Tiltshift on Video"
 date: 2020-11-03
 tags: [Digital Image Processing, OpenCV, C++]
 excerpt: "Digital Image Processing, OpenCV, C++"
