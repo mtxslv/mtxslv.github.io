@@ -163,9 +163,8 @@ The warning is only telling us a variable is not being used. Do not worry about 
 
 After playing around with the sliders, we have the following result:
 
-<video width="480" height="320" controls="controls">
-  <source src="/images/posts_images/2020-11-03-tiltshiftvideo/Ocean-7518.mp4" type="video/mp4">
-</video>
+{% include video id="GmJSyV0w6d8" provider="youtube" %}
+
 
 # More References To Make this Post Possible
 
