@@ -30,7 +30,7 @@ $$percentage :=\frac{ ||\overrightarrow{x_1}-\overrightarrow{x_2}||_\infty }{ ||
 
 given that
 
-$$ ||\overrightarrow{x}||_\infty := max(|x_1|,|x_2|, ..., |x_n| )$$.
+$$ \vert\vert \overrightarrow{x}\vert\vert_\infty := max(\vert x_1 \vert,\vert x_2 \vert, ..., \vert x_n \vert ) $$ .
 
 I remember at the time such metric did not make any sense for me. But after studying a little more it seems pretty reasonable and a smart way of measuring if a change is significant. Notice the numerator of _percentage_ is telling us the largest difference between the samples and when we divide such value by the largest value of the previous sample, we get a form of relative measure. Why is it important? Because it somewhat guarantees us no other value will have greater deviation.
 
