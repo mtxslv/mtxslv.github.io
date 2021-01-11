@@ -5,11 +5,12 @@ tags: [Deep Learning, TensorFlow, Python]
 excerpt: "Deep Learning, TensorFlow, Python"
 toc: true
 author_profile: true
+mathjax: true
 ---
 
-The Deep Learning "Hello World" code is often solving datasets like MNIST or even CIFAR10. But I would like to take a step back so I can discuss some Deep Learning concepts that I think are fundamental to a deep (pun not intended) understanding of what's going on under the hood. 
+When I started AI, I remember one of the first examples I watched working was MNIST(or CIFAR10, I don't remember very well). Looking for online tutorials, this example appears over and over, so I suppose it is a common practice to start DL courses with such idea. Although a very exciting starting point (come on, we are literally seeing a classifer recognizing images!), it kind of masks the math behind it and makes it harder to understand what is going under the hood (if you are a beginner). That is why I would like to "start" with a different example.
 
-I propose to solve an even simpler dataset that stunned very important Machine Learning practioners (at least in the past). It is an example that can give us very important intuition (even visually) of what a neural net does. Let's try to solve 2-Variable XOR dataset.
+This example may actually look too simple to us all because we already know how to tackle it, but in reality it stunned very good mathematitians and AI theorists some time ago.
 
 # The 2-Variable XOR Problem
 
@@ -68,6 +69,34 @@ $$\vec{h} = g(W^{T}\vec{x} + \vec{c})$$.
 The hidden layer will use the **ReLU** (Rectified Linear Unit) function. How does it work? It applies the following relationship:
 
 $$g(z) = max{0,z}$$.
+
+## We are going nowhere!
+
+Notice what we are doing here: we are stacking linear layers. What does a linear layer do? How can we visualize its effect mathematically?
+
+Before I explain the layer, let's simplify a little bit by ignoring the bias term in each neuron, alright?
+
+Ok, now consider the following image (which [can be found here](https://thenounproject.com/term/partial-neural-network/961659/)):
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/partial_neural_net.png" alt="Partial Neural Net">
+  <figcaption>A Partial Neural Net</figcaption>
+</figure>>
+
+It is not our own net. Remember: We stacked layers with 2 neurons only, and here we have a hidden layer with 3 neurons. Even though it is not our neural network, it'll be useful to mathematically visualize what's going on.
+
+Let's focus only on the input and hidden layers. We can be sure this network was designed to a 2D input (like our example data), because there is two neurons in the input layer. Let's call our inputs neurons using the following subscripts: i_{1} and i_{2}. That means the first and the second _input_ neurons. Watch out! When I say "the first" I mean "the higher", "the second" then means "the lower", ok? 
+
+The architecture consideration of the hidden layer chose three neurons. That is ok. There is not too much to talk about this choose. I will call the output of the three hidden neurons: o_1,o_2 and o_3. And again, o_1 is the output of the highest hidden layer neuron, o_2 is the output of the hidden layer neuron in the middle and o_3 is the output of the last hidden layer neuron.
+
+> I am repeating myself several times about the neurons' positions because I want to be clear about which neuron I'm talking about.
+
+Now let's see the output of the first hidden layer neuron, that is, let's see o_1. We now o_1 is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
+
+$$o_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
+
+In this representation, the first subscript of the weight means "what hidden layer neuron output I'm related to?", then "1" means "the output of the first neuron". The second subscript of the weight means "what input will multiply
+
 
 # Visualizing Results (Function Composition)
 
