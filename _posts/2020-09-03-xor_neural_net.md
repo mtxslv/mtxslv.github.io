@@ -95,8 +95,37 @@ Now let's see the output of the first hidden layer neuron, that is, let's see o_
 
 $$o_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
 
-In this representation, the first subscript of the weight means "what hidden layer neuron output I'm related to?", then "1" means "the output of the first neuron". The second subscript of the weight means "what input will multiply
+In this representation, the first subscript of the weight means "what hidden layer neuron output I'm related to?", then "1" means "the output of the first neuron". The second subscript of the weight means "what input will multiply this weight?". Then "1" means "this weight is going to multiply the first input" and "2" means "this weight is going to multiply the second input".
 
+The same reasoning can be applied to the following hidden layer neurons, what leads to:
+
+$$o_2 = w_{2,1} * i_1 + w_{2,2} * i_2$$
+
+and
+
+$$o_3 = w_{3,1} * i_1 + w_{3,2} * i_2$$.
+
+Now we should pay attention to the fact we have 3 linear equations. If you have ever enrolled in a Linear Algebra class, you know we can arrange these equations in a grid-like structure. If you guessed "a matrix equation", you're right!
+
+The matrix structure looks like this:
+
+$$
+\begin{bmatrix}
+o_1 \\
+o_2 \\
+o_3 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+w_{1,1} & w_{1,2} \\
+w_{2,1} & w_{2,2} \\
+w_{3,1} & w_{2,3} \\
+\end{bmatrix}
+\begin{bmatrix}
+i_1 \\
+i_2 \\
+\end{bmatrix}
+$$
 
 # Visualizing Results (Function Composition)
 
