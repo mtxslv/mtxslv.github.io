@@ -127,6 +127,10 @@ i_2 \\
 \end{bmatrix}
 $$
 
+To simplify even further, let's shorten our equation by representing the output vector by $\vec{o}$, the input vector by $\vec{i}$ and the weight matrix by $W$:
+
+$$\vec{o} = W \vec{i} $$
+
 # Visualizing Results (Function Composition)
 
 The model we chose to use has a hidden layer followed by ReLU nonlinearity. It implements the global function:
