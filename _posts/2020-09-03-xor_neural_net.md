@@ -87,23 +87,23 @@ It is not our own net. Remember: We stacked layers with 2 neurons only, and here
 
 Let's focus only on the input and hidden layers. We can be sure this network was designed to a 2D input (like our example data), because there is two neurons in the input layer. Let's call our inputs neurons using the following subscripts: i_{1} and i_{2}. That means the first and the second _input_ neurons. Watch out! When I say "the first" I mean "the higher", "the second" then means "the lower", ok? 
 
-The architecture consideration of the hidden layer chose three neurons. That is ok. There is not too much to talk about this choose. I will call the output of the three hidden neurons: o_1,o_2 and o_3. And again, o_1 is the output of the highest hidden layer neuron, o_2 is the output of the hidden layer neuron in the middle and o_3 is the output of the last hidden layer neuron.
+The architecture consideration of the hidden layer chose three neurons. That is ok. There is not too much to talk about this choose. I will call the output of the three hidden neurons: h_1,h_2 and h_3. And again, h_1 is the output of the highest hidden layer neuron, h_2 is the output of the hidden layer neuron in the middle and h_3 is the output of the last hidden layer neuron.
 
 > I am repeating myself several times about the neurons' positions because I want to be clear about which neuron I'm talking about.
 
-Now let's see the output of the first hidden layer neuron, that is, let's see o_1. We now o_1 is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
+Now let's see the output of the first hidden layer neuron, that is, let's see h_1. We now h_1 is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
 
-$$o_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
+$$h_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
 
 In this representation, the first subscript of the weight means "what hidden layer neuron output I'm related to?", then "1" means "the output of the first neuron". The second subscript of the weight means "what input will multiply this weight?". Then "1" means "this weight is going to multiply the first input" and "2" means "this weight is going to multiply the second input".
 
 The same reasoning can be applied to the following hidden layer neurons, what leads to:
 
-$$o_2 = w_{2,1} * i_1 + w_{2,2} * i_2$$
+$$h_2 = w_{2,1} * i_1 + w_{2,2} * i_2$$
 
 and
 
-$$o_3 = w_{3,1} * i_1 + w_{3,2} * i_2$$.
+$$h_3 = w_{3,1} * i_1 + w_{3,2} * i_2$$.
 
 Now we should pay attention to the fact we have 3 linear equations. If you have ever enrolled in a Linear Algebra class, you know we can arrange these equations in a grid-like structure. If you guessed "a matrix equation", you're right!
 
@@ -111,9 +111,9 @@ The matrix structure looks like this:
 
 $$
 \begin{bmatrix}
-o_1 \\
-o_2 \\
-o_3 \\
+h_1 \\
+h_2 \\
+h_3 \\
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -127,9 +127,41 @@ i_2 \\
 \end{bmatrix}
 $$
 
-To simplify even further, let's shorten our equation by representing the output vector by $\vec{o}$, the input vector by $\vec{i}$ and the weight matrix by $W$:
+To simplify even further, let's shorten our equation by representing the hidden layer output vector by $\vec{h}$, the input vector by $\vec{i}$ and the weight matrix by $W$:
 
-$$\vec{o} = W \vec{i} $$
+$$\vec{h} = W \vec{i} $$.
+
+If we connect the output neuron to the hidden layer, we have: 
+
+$$\vec{o} = M \vec{h}$$,
+where $\vec{o}$ is a 2D vector (each position contains the output of the output neurons) and $M$ is the matrix that maps the hidden layer representation to the output values. Expanding it we have:
+
+$$\vec{o} = M W \vec{i}$$,
+
+where $MW$ gives another matrix, because this is just a matrix multiplication. Let's call it _A_. Then:
+
+$$\vec{o} = A \vec{i}$$
+
+Now suppose a different neural network, like the following (you can find it [here](https://thenounproject.com/term/dueling-neural-networks/1714867/)):
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/2_hidden_layer_neural_net.png" alt="A Neural Net with 2 Hidden Layers">
+  <figcaption>A Neural Net with 2 Hidden Layers</figcaption>
+</figure>>
+
+This network has only one output neuron and two hidden layers (the first one with 4 neurons and the second one with three neurons). The input is a 6-D vector. Again we are ignoring bias terms. Let's see the shortened matrix equation of this net:
+
+$$o = M H_1 H_2 \vec{i}$$.
+
+Here , the output _o_ is a scalar (we have only one output neuron), and two hidden layers (H_2 is the matrix of weights that maps the input to the hidden layer with 4 neurons and H_1 maps the 4 neurons output to the 3 hidden layer neurons outputs). M maps the internal representation to the output scalar.
+
+Notice $M H_1 H_2$ is a matrix multiplication that results in a matrix again. Let's call it _B_. Then:
+
+$$o = B \vec{i}$$.
+
+Can you see where we're going? It doesn't matter how many linear layers we stack, they'll always be matrix in the end. To our Machine Learning perspective, it means it doesn't mean how many layers we stack, we'll never learn a non linear behaviour in the data, because the model can only learn linear relations (the model itself is a linear function anyway).
+
+> If you want to read another explanation on why a stack of linear layers is still linear, please access this [Google's Machine Learning Crash Course page](https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/anatomy).
 
 # Visualizing Results (Function Composition)
 
