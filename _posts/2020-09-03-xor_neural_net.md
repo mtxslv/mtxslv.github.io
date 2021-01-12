@@ -129,7 +129,7 @@ where $$\vec{o}$$ is a 2D vector (each position contains the output of the outpu
 
 $$\vec{o} = M W \vec{i}$$,
 
-where $MW$ gives another matrix, because this is just a matrix multiplication. Let's call it _A_. Then:
+where $$MW$$ gives another matrix, because this is just a matrix multiplication. Let's call it _A_. Then:
 
 $$\vec{o} = A \vec{i}$$
 
