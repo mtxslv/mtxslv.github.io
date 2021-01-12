@@ -60,17 +60,8 @@ $$ŷ = f^{(2)}(\vec{h};\vec{w},b)$$ , such that $$\vec{h} = f^{(1)}(\vec{x};W,\v
 
 Sounds like we are making real improvements here, but a linear function of a linear function makes the whole thing still linear.
 
-## More than only one neuron , the return (let's use a non-linearity)
 
-Ok, we know we cannot stack linear functions. It will lead us anywhere. What then? Let's use a nonlinear function called _activation function_ in the hidden layer. Let's define
-
-$$\vec{h} = g(W^{T}\vec{x} + \vec{c})$$.
-
-The hidden layer will use the **ReLU** (Rectified Linear Unit) function. How does it work? It applies the following relationship:
-
-$$g(z) = max{0,z}$$.
-
-## We are going nowhere!
+### We are going nowhere!
 
 Notice what we are doing here: we are stacking linear layers. What does a linear layer do? How can we visualize its effect mathematically?
 
@@ -85,13 +76,13 @@ Ok, now consider the following image (which [can be found here](https://thenounp
 
 It is not our own net. Remember: We stacked layers with 2 neurons only, and here we have a hidden layer with 3 neurons. Even though it is not our neural network, it'll be useful to mathematically visualize what's going on.
 
-Let's focus only on the input and hidden layers. We can be sure this network was designed to a 2D input (like our example data), because there is two neurons in the input layer. Let's call our inputs neurons using the following subscripts: i_{1} and i_{2}. That means the first and the second _input_ neurons. Watch out! When I say "the first" I mean "the higher", "the second" then means "the lower", ok? 
+Let's focus only on the input and hidden layers. We can be sure this network was designed to a 2D input (like our example data), because there is two neurons in the input layer. Let's call our inputs neurons using the following subscripts: $$i_{1}$$ and $$i_{2}$$. That means the first and the second _input_ neurons. Watch out! When I say "the first" I mean "the higher", "the second" then means "the lower", ok? 
 
-The architecture consideration of the hidden layer chose three neurons. That is ok. There is not too much to talk about this choose. I will call the output of the three hidden neurons: h_1,h_2 and h_3. And again, h_1 is the output of the highest hidden layer neuron, h_2 is the output of the hidden layer neuron in the middle and h_3 is the output of the last hidden layer neuron.
+The architecture consideration of the hidden layer chose three neurons. That is ok. There is not too much to talk about this choose. I will call the output of the three hidden neurons: $$h_1$$,$$h_2$$ and $$h_3$$. And again, $$h_1$$ is the output of the highest hidden layer neuron, $$h_2$$ is the output of the hidden layer neuron in the middle and $$h_3$$ is the output of the last hidden layer neuron.
 
 > I am repeating myself several times about the neurons' positions because I want to be clear about which neuron I'm talking about.
 
-Now let's see the output of the first hidden layer neuron, that is, let's see h_1. We now h_1 is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
+Now let's see the output of the first hidden layer neuron, that is, let's see $$h_1$$. We now $$h_1$$ is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
 
 $$h_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
 
@@ -127,14 +118,14 @@ i_2 \\
 \end{bmatrix}
 $$
 
-To simplify even further, let's shorten our equation by representing the hidden layer output vector by $\vec{h}$, the input vector by $\vec{i}$ and the weight matrix by $W$:
+To simplify even further, let's shorten our equation by representing the hidden layer output vector by $$\vec{h}$$, the input vector by $$\vec{i}$$ and the weight matrix by $$W$$:
 
 $$\vec{h} = W \vec{i} $$.
 
 If we connect the output neuron to the hidden layer, we have: 
 
 $$\vec{o} = M \vec{h}$$,
-where $\vec{o}$ is a 2D vector (each position contains the output of the output neurons) and $M$ is the matrix that maps the hidden layer representation to the output values. Expanding it we have:
+where $$\vec{o}$$ is a 2D vector (each position contains the output of the output neurons) and $$M$$ is the matrix that maps the hidden layer representation to the output values. Expanding it we have:
 
 $$\vec{o} = M W \vec{i}$$,
 
@@ -153,15 +144,34 @@ This network has only one output neuron and two hidden layers (the first one wit
 
 $$o = M H_1 H_2 \vec{i}$$.
 
-Here , the output _o_ is a scalar (we have only one output neuron), and two hidden layers (H_2 is the matrix of weights that maps the input to the hidden layer with 4 neurons and H_1 maps the 4 neurons output to the 3 hidden layer neurons outputs). M maps the internal representation to the output scalar.
+Here , the output _o_ is a scalar (we have only one output neuron), and two hidden layers ($$H_2$$ is the matrix of weights that maps the input to the hidden layer with 4 neurons and $$H_1$ maps the 4 neurons output to the 3 hidden layer neurons outputs). M maps the internal representation to the output scalar.
 
-Notice $M H_1 H_2$ is a matrix multiplication that results in a matrix again. Let's call it _B_. Then:
+Notice $$M H_1 H_2$$ is a matrix multiplication that results in a matrix again. Let's call it _B_. Then:
 
 $$o = B \vec{i}$$.
 
 Can you see where we're going? It doesn't matter how many linear layers we stack, they'll always be matrix in the end. To our Machine Learning perspective, it means it doesn't mean how many layers we stack, we'll never learn a non linear behaviour in the data, because the model can only learn linear relations (the model itself is a linear function anyway).
 
+I hope I convinced you that stacking linear layers will get us nowhere, but trust me: all is not lost. We just need another mechanism to learn non-linear relationships in the data. This "mechanism" I'll introduce is called _Activation Functions_. 
+
 > If you want to read another explanation on why a stack of linear layers is still linear, please access this [Google's Machine Learning Crash Course page](https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/anatomy).
+
+
+
+### Activation Functions!
+
+Although there are several activation functions, I'll focus on only one to explain what they do: the ReLU (Rectified Linear Unit) activation function.
+
+
+## More than only one neuron , the return (let's use a non-linearity)
+
+Ok, we know we cannot stack linear functions. It will lead us anywhere. What then? Let's use a nonlinear function called _activation function_ in the hidden layer. Let's define
+
+$$\vec{h} = g(W^{T}\vec{x} + \vec{c})$$.
+
+The hidden layer will use the **ReLU** (Rectified Linear Unit) function. How does it work? It applies the following relationship:
+
+$$g(z) = max{0,z}$$.
 
 # Visualizing Results (Function Composition)
 
