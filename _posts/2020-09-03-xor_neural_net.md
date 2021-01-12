@@ -136,7 +136,7 @@ $$\vec{o} = A \vec{i}$$
 Now suppose a different neural network, like the following (you can find it [here](https://thenounproject.com/term/dueling-neural-networks/1714867/)):
 
 <figure>
-  <img src="/images/posts_images/2020-09-03-xor_neural_net/2_hidden_layer_neural_net.png" alt="A Neural Net with 2 Hidden Layers">
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/two_hidden_layer_neural_net.png" alt="A Neural Net with 2 Hidden Layers">
   <figcaption>A Neural Net with 2 Hidden Layers</figcaption>
 </figure>>
 
