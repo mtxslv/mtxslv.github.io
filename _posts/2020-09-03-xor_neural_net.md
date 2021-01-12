@@ -29,6 +29,7 @@ Following the development proposed by [Ian Goodfellow et al](https://www.deeplea
 
 We already know what we should do. Now we should choose the model f($$x$$;$$\theta$$).
 
+# Theoretical Modelling (Let's think for a while...)
 ## Only one Neuron (A Linear Model)
 
 Our first attempt will consider a linear model. Such model implements the following equation:
@@ -238,7 +239,7 @@ The last layer 'draws' the line over representation-space points.
 
 This line means "here label equals 0". As we move downwards the line, the classification (a real number) increases. When we stops at the collapsed points, we have classification equalling 1.
 
-# Using Training
+# Visualizing Results (Iterative Training)
 
 We saw how to get the correct classification using function composition. Although useful, Deep Learning practice is about backprop and gradient descent, right?
 
