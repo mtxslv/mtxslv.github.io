@@ -144,7 +144,7 @@ This network has only one output neuron and two hidden layers (the first one wit
 
 $$o = M H_1 H_2 \vec{i}$$.
 
-Here , the output _o_ is a scalar (we have only one output neuron), and two hidden layers ($$H_2$$ is the matrix of weights that maps the input to the hidden layer with 4 neurons and $$H_1$ maps the 4 neurons output to the 3 hidden layer neurons outputs). M maps the internal representation to the output scalar.
+Here , the output _o_ is a scalar (we have only one output neuron), and two hidden layers ($$H_2$$ is the matrix of weights that maps the input to the hidden layer with 4 neurons and $$H_1$$ maps the 4 neurons output to the 3 hidden layer neurons outputs). M maps the internal representation to the output scalar.
 
 Notice $$M H_1 H_2$$ is a matrix multiplication that results in a matrix again. Let's call it _B_. Then:
 
