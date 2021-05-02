@@ -323,35 +323,44 @@ This line means "here label equals 0". As we move downwards the line, the classi
 
 # Visualizing Results (Iterative Training)
 
-We saw how to get the correct classification using function composition. Although useful, Deep Learning practice is about backprop and gradient descent, right?
+We saw how to get the correct classification using function composition. Although useful _for visualizing_, Deep Learning practice is all about backprop and gradient descent, right?
 
-Let's see what happens when we use such learning algorithms.
+Let's see what happens when we use such learning algorithms. The images below show the evolution of the parameters values over training epochs.
 
-> For our training, we initialize all parameters to values near 1.
-
+## Parameters Evolution
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/kernel_first_layer_plot.png" alt="First Transformation for Representational Space">
   <figcaption>First Layer Kernel Values Evolution</figcaption>
 </figure>>
 
-Notice how the first layer kernel values changes, but at the end go back to approximately one. I believe they do so because the gradient descent is going around a hill (a n-dimensional hill, actually), over the loss function.
+In the image above we see the evolution of the elements of $$W$$. Notice also how the first layer kernel values changes, but at the end they go back to approximately one. I believe they do so because the gradient descent is going around a hill (a n-dimensional hill, actually), over the loss function.
 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/first_layer_bias_plot.png" alt="First Transformation for Representational Space">
   <figcaption>First Layer Bias Values</figcaption>
 </figure>>
 
+The first layer bias values (aka $$\vec{c}$$) behave like the first layer kernel _kinda_.
 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/second_layer_values_plot.png" alt="First Transformation for Representational Space">
   <figcaption>Second Layer Kernel and Bias Values Evolution</figcaption>
 </figure>>
 
+The main lesson to be understood from the three images above is: the parameters show a trend. I mean... they _sorta_ goes to a stable value. Paying close attention we see they're going to stabilize near the hand-defined values I showed during the [```Visualizing``` topic](https://mtxslv.github.io/xor_neural_net/#visualizing-results-function-composition). 
+
+> "The solution we described to the XOR problem is at a global minimum of the loss function, so gradient descent could converge to this point." - [Goodfellow et al](https://www.deeplearningbook.org/contents/mlp.html).
+
+Below we see the evolution of the loss function. It abruptely falls towards a small value and over epochs it slowly decreases.
+
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/Loss_handwritten.png" alt="First Transformation for Representational Space">
   <figcaption>Loss Evolution</figcaption>
 </figure>>
 
+## Representation Space Evolution
+
+Finally we can see how the transformed space evolves over epochs: how the line described by $$\vec{w}$$ turns around trying to separate the samples and how these move. 
 
 <figure>
   <img src="{{ '/images/posts_images/2020-09-03-xor_neural_net/xor_net_evolution.gif' | relative_url }}" alt="Representational Space Evolution">
