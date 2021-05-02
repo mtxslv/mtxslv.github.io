@@ -13,9 +13,12 @@ toc: true
 
 ## Skills
 
-* Programming languages: C, C++, MATLAB and Python.
+* Programming languages: Assembly (ATMEL), C, C++, Python, MATLAB.
 * OS: Linux (Ubuntu).
 * Hardware: Arduino.
+
+## Certification
+* Huawei HCIA-AI (2021 - 2024)
 
 ## Education
 
@@ -27,6 +30,7 @@ toc: true
 ## Published Papers 
 
 [Protótipo de Um Robô Móvel Seguidor de Linha de Baixo Custo Construído com Alumínio Reciclado](http://sistemaolimpo.org/midias/uploads/40e99c88e4df68733d9fc3a4ac38d794.pdf). Sistema Olimpo. MNR.
+> You can find it published in the _Brazillian Journal of Development_ [here](https://www.brazilianjournals.com/index.php/BRJD/article/view/22315).
 
 ## What Am I Doing Currently?
 
