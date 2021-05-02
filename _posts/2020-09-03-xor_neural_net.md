@@ -252,14 +252,17 @@ $$
 1 & 1 \\
 1 & 1 \\
 \end{bmatrix}
+$$
 
+$$
 \begin{bmatrix}
 0 \\
 -1 \\
-\end{bmatrix} , 
+\end{bmatrix}
+$$
 
+$$
 \vec{w} = 
-
 \begin{bmatrix}
 1 \\
 -2 \\
