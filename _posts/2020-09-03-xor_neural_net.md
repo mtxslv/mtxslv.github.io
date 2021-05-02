@@ -161,7 +161,7 @@ I hope I convinced you that stacking linear layers will get us nowhere, but trus
 
 ### Activation Functions!
 
-Although there are several activation functions, I'll focus on only one to explain what they do. Let's meet the ReLU (Rectified Linear Unit) activation function.
+"Activation Function" is a function that generates an output to the neuron, based on its inputs. The name comes from the neuroscience heirloom. Although there are several activation functions, I'll focus on only one to explain what they do. Let's meet the ReLU (Rectified Linear Unit) activation function.
 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ReLU_and_Nonnegative_Soft_Thresholding_Functions.svg" alt="Meet the ReLU">
@@ -209,6 +209,7 @@ Now we have a powerful tool to help our network with the XOR problem (and with v
   <img src="{{ '/images/posts_images/2020-09-03-xor_neural_net/1472552733-doctor-strange-benedict-cumberbatch.gif' | relative_url }}" alt="doctor strange tripping">
   <figcaption>Neural Nets Bend Space? Huh??</figcaption>
 </figure>
+
 
 
 ## More than only one neuron , the return (let's use a non-linearity)
