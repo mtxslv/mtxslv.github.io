@@ -66,7 +66,7 @@ Sounds like we are making real improvements here, but a linear function of a lin
 
 Notice what we are doing here: we are stacking linear layers. What does a linear layer do? How can we visualize its effect mathematically?
 
-Before I explain the layer, let's simplify a little bit by ignoring the bias term in each neuron, alright?
+Before I explain the layer, let's simplify a little bit by ignoring the bias term in each neuron ($$\vec{c}$$ and $$b$$), alright?
 
 Ok, now consider the following image (which [can be found here](https://thenounproject.com/term/partial-neural-network/961659/)):
 
@@ -83,9 +83,11 @@ The architecture consideration of the hidden layer chose three neurons. That is 
 
 > I am repeating myself several times about the neurons' positions because I want to be clear about which neuron I'm talking about.
 
-Now let's see the output of the first hidden layer neuron, that is, let's see $$h_1$$. We now $$h_1$$ is a weighted sum of the inputs (and don't forget we're ignoring the bias!). In one equation:
+Now let's see the output of the first hidden layer neuron, that is, let's see $$h_1$$. We now $$h_1$$ is a weighted sum of the inputs, which are written as $$\vec{x}$$ in the original formulation, but we'll use $$i$$ so we can relate to _input_. In one equation:
 
 $$h_1 = w_{1,1} * i_1 + w_{1,2} * i_2$$.
+
+> don't you forget we're ignoring the bias!
 
 In this representation, the first subscript of the weight means "what hidden layer neuron output I'm related to?", then "1" means "the output of the first neuron". The second subscript of the weight means "what input will multiply this weight?". Then "1" means "this weight is going to multiply the first input" and "2" means "this weight is going to multiply the second input".
 
@@ -126,7 +128,7 @@ $$\vec{h} = W \vec{i} $$.
 If we connect the output neuron to the hidden layer, we have: 
 
 $$\vec{o} = M \vec{h}$$,
-where $$\vec{o}$$ is a 2D vector (each position contains the output of the output neurons) and $$M$$ is the matrix that maps the hidden layer representation to the output values. Expanding it we have:
+where $$\vec{o}$$ is a 2D vector (each position contains the output of the output neurons) and $$M$$ is the matrix that maps the hidden layer representation to the output values (the $$\vec{w}$$ in the original formulation). Here, $$ŷ = \vec{o}$$. Expanding it we have:
 
 $$\vec{o} = M W \vec{i}$$,
 
@@ -210,17 +212,30 @@ Now we have a powerful tool to help our network with the XOR problem (and with v
   <figcaption>Neural Nets Bend Space? Huh??</figcaption>
 </figure>
 
-
-
 ## More than only one neuron , the return (let's use a non-linearity)
 
-Ok, we know we cannot stack linear functions. It will lead us anywhere. What then? Let's use a nonlinear function called _activation function_ in the hidden layer. Let's define
+Ok, we know we cannot stack linear functions. It will lead us anywhere. The solution? ReLU activation function. But maybe something is still confusing: _where it goes_? 
 
-$$\vec{h} = g(W^{T}\vec{x} + \vec{c})$$.
+I believe the [following image](https://commons.wikimedia.org/wiki/File:ArtificialNeuronModel_english.png) will help. This is the artificial neuron "classic" model (_classic_ here means _we always see it when we start doing Machine/Deeo Learning_):
 
-The hidden layer will use the **ReLU** (Rectified Linear Unit) function. How does it work? It applies the following relationship:
+<figure>
+  <img src="/images/posts_images/800px-ArtificialNeuronModel_english.png" alt="points position after relu">
+  <figcaption>Our good ol' Artificial Neuron</figcaption>
+</figure>>
 
-$$g(z) = max{0,z}$$.
+Recall our previous formulation:
+$$ŷ = f^{(2)}(\vec{h};\vec{w},b)$$ , such that $$\vec{h} = f^{(1)}(\vec{x};W,\vec{c})$$.
+
+Here, a "neuron" can be seen as the process which produces a particular output $$h_i$$ or $$ŷ_i$$. Let's focus on the $$h_i$$. Previously it was explained that, in our context, it equals :
+
+$$h_i = w_{i,1} * i_1 + w_{i,2} * i_2$$. 
+
+Here, $$w_{i,j}$$ are the weights that produces the _i-th_ hidden-layer output. The _i_s elements are the inputs (the _x_es in the image). The ```transfer function``` comprises the two products and the sum. Actually, it can be written as $$h_i = \vec{w_i} \vec{i}$$ either, which means _the inner product between the _i-th_ weights and the input (here is clearer the transfer function is the inner product itself). The input $$net_j$$ is $$h_i$$, and we'll finally deal with the activation function!
+
+In the original formulation, there's no non-linear activation function. Notice I wrote:
+$$\vec{o} = ŷ = M * \vec{h}$$ . 
+
+The transformation is linear, right? What we are going to do now is to add the ReLU, such that: $$\vec{o} = ŷ = M * ReLU( \vec{h} )$$. Here, the threshold $$\theta_j$$ does not exist.
 
 # Visualizing Results (Function Composition)
 
