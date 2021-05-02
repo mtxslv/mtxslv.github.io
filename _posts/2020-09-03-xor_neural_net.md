@@ -164,7 +164,7 @@ I hope I convinced you that stacking linear layers will get us nowhere, but trus
 "Activation Function" is a function that generates an output to the neuron, based on its inputs. The name comes from the neuroscience heirloom. Although there are several activation functions, I'll focus on only one to explain what they do. Let's meet the ReLU (Rectified Linear Unit) activation function.
 
 <figure>
-  <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ReLU_and_Nonnegative_Soft_Thresholding_Functions.svg" alt="Meet the ReLU">
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ReLU_and_Nonnegative_Soft_Thresholding_Functions.svg.png" alt="Meet the ReLU">
   <figcaption>Meet the ReLU!</figcaption>
 </figure>>
 
@@ -177,7 +177,7 @@ Another nice property of the ReLU is its slope (or derivative, or even _tangent_
 Here we have sort of a problem... what's the slope at _x=0_? Is it 0 (like on the left side) or 1 (right side slope)? That's called a **non-differentiable point**. Due to this limitation, people developed the ```softplus function```, which is defined as $$\ln(1+e^{x})$$. The softplus function can be [seen below](https://commons.wikimedia.org/wiki/File:Rectifier_and_softplus_functions.svg):
 
 <figure>
-  <img src="/images/posts_images/2020-09-03-xor_neural_net/495px-Rectifier_and_softplus_functions.svg" alt="ReLU and softplus comparison">
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/495px-Rectifier_and_softplus_functions.svg.png" alt="ReLU and softplus comparison">
   <figcaption>ReLU and softplus comparison</figcaption>
 </figure>>
 
