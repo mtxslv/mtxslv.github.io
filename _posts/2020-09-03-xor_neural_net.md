@@ -366,3 +366,7 @@ Finally we can see how the transformed space evolves over epochs: how the line d
   <img src="{{ '/images/posts_images/2020-09-03-xor_neural_net/xor_net_evolution.gif' | relative_url }}" alt="Representational Space Evolution">
   <figcaption>Representational Space Evolution</figcaption>
 </figure>
+
+# Brief Words for the Reader
+
+Thank you for reading it all along. It is one of the longest posts I wrote, but I wanted to comment as many things as possible so you could have a better view of what's going on under the hood of Neural Nets. If any question come up please let me know: you can find how to get in touch with me using any means available here on the left (or on the top of the page, if you're on a smartphone). If you want to know more about my projects, please check them out clicking on any link below.
