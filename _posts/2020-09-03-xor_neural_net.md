@@ -246,20 +246,21 @@ The model we chose to use has a hidden layer followed by ReLU nonlinearity. It i
 $$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max\{0,W^{T}\vec{x}+\vec{c}\}+b$$ .
 
 A specified solution to the XOR problem has the following parameters:
-
+W=
 $$
 \begin{bmatrix}
 1 & 1 \\
 1 & 1 \\
 \end{bmatrix}
-$$
+$$,
 
 $$
+\vec{c} = 
 \begin{bmatrix}
 0 \\
 -1 \\
 \end{bmatrix}
-$$
+$$,
 
 $$
 \vec{w} = 
