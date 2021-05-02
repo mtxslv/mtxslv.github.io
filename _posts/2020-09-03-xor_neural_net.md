@@ -219,7 +219,7 @@ Ok, we know we cannot stack linear functions. It will lead us anywhere. The solu
 I believe the [following image](https://commons.wikimedia.org/wiki/File:ArtificialNeuronModel_english.png) will help. This is the artificial neuron "classic" model (_classic_ here means _we always see it when we start doing Machine/Deeo Learning_):
 
 <figure>
-  <img src="/images/posts_images/800px-ArtificialNeuronModel_english.png" alt="points position after relu">
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ArtificialNeuronModel_english.png" alt="classic artificial neuron">
   <figcaption>Our good ol' Artificial Neuron</figcaption>
 </figure>>
 
@@ -230,7 +230,7 @@ Here, a "neuron" can be seen as the process which produces a particular output $
 
 $$h_i = w_{i,1} * i_1 + w_{i,2} * i_2$$. 
 
-Here, $$w_{i,j}$$ are the weights that produces the _i-th_ hidden-layer output. The _i_s elements are the inputs (the _x_es in the image). The ```transfer function``` comprises the two products and the sum. Actually, it can be written as $$h_i = \vec{w_i} \vec{i}$$ either, which means _the inner product between the _i-th_ weights and the input (here is clearer the transfer function is the inner product itself). The input $$net_j$$ is $$h_i$$, and we'll finally deal with the activation function!
+Here, $$w_{i,j}$$ are the weights that produces the _i-th_ hidden-layer output. The _i_ elements are the inputs (the _x_ in the image). The ```transfer function``` comprises the two products and the sum. Actually, it can be written as $$h_i = \vec{w_i} \vec{i}$$ either, which means _the inner product between the _i-th_ weights and the input (here is clearer the transfer function is the inner product itself). The input $$net_j$$ is $$h_i$$, and we'll finally deal with the activation function!
 
 In the original formulation, there's no non-linear activation function. Notice I wrote:
 $$\vec{o} = ŷ = M * \vec{h}$$ . 
