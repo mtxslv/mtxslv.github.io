@@ -248,19 +248,18 @@ $$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max\{0,W^{T}\vec{x}+\vec{c}\}+b$$
 A specified solution to the XOR problem has the following parameters:
 
 $$
-W =
 \begin{bmatrix}
 1 & 1 \\
 1 & 1 \\
 \end{bmatrix}
-,
-c = 
+
 \begin{bmatrix}
 0 \\
 -1 \\
 \end{bmatrix} , 
 
 \vec{w} = 
+
 \begin{bmatrix}
 1 \\
 -2 \\
