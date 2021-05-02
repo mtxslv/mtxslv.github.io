@@ -246,6 +246,7 @@ The model we chose to use has a hidden layer followed by ReLU nonlinearity. It i
 $$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max\{0,W^{T}\vec{x}+\vec{c}\}+b$$ .
 
 A specified solution to the XOR problem has the following parameters:
+
 W=
 $$
 \begin{bmatrix}
@@ -285,28 +286,29 @@ When we apply the transformation $$W^{T}\vec{x}$$ to all four inputs, we have th
   <figcaption>First Transformation for Representational Space</figcaption>
 </figure>>
 
-Notice this representation space (or, at least, this step towards it) makes the points look different. The most important thing to notice is two points (those labelled with '1') colapsed into only one. 
+Notice this representation space (or, at least, this step towards it) makes some points' positions look different. While the red-ish one remained at the same place, the blue ended up at $$[2,2]$$.
+But the most important thing to notice is that the green and the black points (those labelled with '1') colapsed into only one (whose position is $$[1,1]$$). 
 
 ## Second Transformation for Representation Space
 
-Now let's add vector $$\vec{c}$$. What do we obtain? We then have this:
+Now let's add vector $$\vec{c}$$. What do we obtain? 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/second_transformation_for_representation_space.png" alt="First Transformation for Representational Space">
   <figcaption>First Transformation for Representational Space</figcaption>
 </figure>>
 
-Again, the position of points changed! But it's not ended.
+Again, the position of points changed! All points moved downward 1 unit (due to the _-1_ in $$\vec{c}$$).
 
 ## Final Representation Space
 
-We now apply the nonlinearity **ReLU**. It will gives us "the real Representation Space".
+We now apply the nonlinearity **ReLU**. It will gives us "the real" Representation Space. I mean... the Representationa Space itself is this one. All the previous images just shows the modifications occuring due to each mathematical operation (_Matrix Multiplication_ followed by _Vector Sum_).
 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/final_representation_space.png" alt="First Transformation for Representational Space">
   <figcaption>First Transformation for Representational Space</figcaption>
 </figure>>
 
-Notice now we can draw a line to separate the points!
+Now we can draw a line to separate the points! 
 
 ## Last Linear Transformation in Representational Space
 
