@@ -243,18 +243,12 @@ So far it was said the activation function occurs after each inner product. If w
 
 The model we chose to use has a hidden layer followed by ReLU nonlinearity. It implements the global function (considering the bias):
 
-$$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max{0,W^{T}\vec{x}+\vec{c}}+b$$ .
+$$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max\{0,W^{T}\vec{x}+\vec{c}\}+b$$ .
 
 A specified solution to the XOR problem has the following parameters:
 
 $$
-W = 
-\begin{bmatrix}
-h_1 \\
-h_2 \\
-h_3 \\
-\end{bmatrix}
-=
+W =
 \begin{bmatrix}
 1 & 1 \\
 1 & 1 \\
