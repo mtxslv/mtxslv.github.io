@@ -38,7 +38,7 @@ $$ŷ = f(\vec{x};\vec{w},b) = \vec{x}^{T}\vec{w}+b$$.
 
 Seems nice, isn't it? Will it work? Well... unfortunatelly, no. 
 
-How can I now it beforehand? Let's take a closer look to the expression. It is implementing a linear relation. Imagine _f_ is a surface over the $$\vec{x}$$ plane, and its height equals the output. The surface must have height equalling 1 over the points $$[0 1]$$ and $$[1 0]$$ and 0 height (it would be touching the plane) at points $$[0 0]$$ and $$[1 1]$$. Could a hyperplane behave this way? No, it cannot.
+How can I now it beforehand? Let's take a closer look to the expression. It is implementing a linear relation. Imagine _f_ is a surface over the $$\vec{x}$$ plane, and its height equals the output. The surface must have height equalling 1 over the points $$[0, 1]$$ and $$[1, 0]$$ and 0 height (it would be touching the plane) at points $$[0, 0]$$ and $$[1, 1]$$. Could a hyperplane behave this way? No, it cannot.
 
 Another way of think about it is to imagine the network trying to separate the points. The points labeled with 1 must remain together in one side of line. The other ones (labelled with 0) stay on the other side of the line.
 
@@ -161,7 +161,54 @@ I hope I convinced you that stacking linear layers will get us nowhere, but trus
 
 ### Activation Functions!
 
-Although there are several activation functions, I'll focus on only one to explain what they do: the ReLU (Rectified Linear Unit) activation function.
+Although there are several activation functions, I'll focus on only one to explain what they do. Let's meet the ReLU (Rectified Linear Unit) activation function.
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ReLU_and_Nonnegative_Soft_Thresholding_Functions.svg" alt="Meet the ReLU">
+  <figcaption>Meet the ReLU!</figcaption>
+</figure>>
+
+In the [figure above](https://search.creativecommons.org/photos/8e35394e-5b00-4560-8160-1b58909e6452) we have, on the left (red function), the ReLU. As can be seen in the image, it is defined by the ```max``` operation between the input and '0'. It means the ReLU looks to the input and thinks: is it greater than '0'? If yes, the output is the input itself. If it is not, the output is zero. That said, we see every input point greater than '0' has an height equaling its distance to the origin of the graph. That's why the positive graph's half is a perfect diagonal straight line. When we look to the other half, all _x's_ are negative, so all the outputs are zero. That's why we have a perfect horizontal line.
+
+Now imagine that we have a lot of points distributed along a line: some of them lie on the negative side of the line, and some of them lie on the positive side. Suppose I apply the ReLU function on them. What happens to the distribution? The points on the positive side remains in the same place, they don't move because their position is greater than 0. On the other hand, the points from the negative side will crowd on the origin.   
+
+Another nice property of the ReLU is its slope (or derivative, or even _tangent_). If you have a little background on Machine/Deep Learning, you know this concept is fundamental for the neural nets algorithms. On the graph's left side we have an horizontal line: it has no slope, so the derivative is 0. On the other side we've got a perfect diagonal line: the slope is 1 (tangent of 45º).
+
+Here we have sort of a problem... what's the slope at _x=0_? Is it 0 (like on the left side) or 1 (right side slope)? That's called a **non-differentiable point**. Due to this limitation, people developed the ```softplus function```, which is defined as $$\ln(1+e^{x})$$. The softplus function can be [seen below](https://commons.wikimedia.org/wiki/File:Rectifier_and_softplus_functions.svg):
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/495px-Rectifier_and_softplus_functions.svg" alt="ReLU and softplus comparison">
+  <figcaption>ReLU and softplus comparison</figcaption>
+</figure>>
+
+> Empirically, it is better to use the ReLU instead of the softplus. Furthermore, the dead ReLU is a more important problem than the non-differentiability at the origin. Then, at the end, the pros (simple evaluation and simple slope) outweight the cons (dead neuron and non-differentiability at the origin).
+
+Ok... so far we've discussed the 1D effect of ReLU. What happens when we apply ReLU to a set of 2D points?   
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/pontos_antes_relu.png" alt="points position before relu">
+  <figcaption>2D Points (original)</figcaption>
+</figure>>
+
+First, consider this set of 8 colorful points. Pay attention to their _x, y_ positions: the blue ones have positive coordinates both; the green, red and orange ones have negative x coordinates; the remaining ones have positive x coordinates, but negative y ones. Suppose we applied ReLU to the points (to each coordinate). What happens?
+
+<figure>
+  <img src="/images/posts_images/2020-09-03-xor_neural_net/pontos_depois_relu.png" alt="points position after relu">
+  <figcaption>2D Points (after ReLU)</figcaption>
+</figure>>
+
+As we can see, the blue points didn't move. Why? Because their coordinates are positive, so the ReLU does not change their values. The pink and yellow points were moved upwards. It happened because their negative coordinates were the _y_ ones. The red and green points were moved rightwards. It happened due to the fact their _x_ coordinates were negative. What about the orange point? Did it disappear? Well... no. Note every moved coordinate became zero (ReLU effect, right?) and the orange's non negative coordinate was zero (just like the black's one). The black and orange points ended up in the same place (the origin), and the image just shows the black dot.
+
+The most important thing to remember from this example is the points didn't move the same way (some of them did not move at all). That effect is what we call "non linear" and that's very important to neural networks. Some paragraphs above I explained why applying linear functions several times would get us nowhere. Visually what's happening is the matrix multiplications are moving everybody _sorta_ the same way (you can find more about it [here](https://youtu.be/kYB8IZa5AuE?t=156)). 
+
+Now we have a powerful tool to help our network with the XOR problem (and with virtually every problem): nonlinearities help us to bend and distort space! The neural network that uses it can move examples more freely so it can learn better relationships in the data!
+
+> You can read more about "space-bender" neural networks in [Colah's amazing blog post](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)
+
+<figure>
+  <img src="{{ '/images/posts_images/2020-09-03-xor_neural_net/1472552733-doctor-strange-benedict-cumberbatch.gif' | relative_url }}" alt="doctor strange tripping">
+  <figcaption>Neural Nets Bend Space? Huh??</figcaption>
+</figure>
 
 
 ## More than only one neuron , the return (let's use a non-linearity)
