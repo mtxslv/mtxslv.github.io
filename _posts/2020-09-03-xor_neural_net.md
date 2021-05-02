@@ -216,7 +216,7 @@ Now we have a powerful tool to help our network with the XOR problem (and with v
 
 Ok, we know we cannot stack linear functions. It will lead us anywhere. The solution? ReLU activation function. But maybe something is still confusing: _where it goes_? 
 
-I believe the [following image](https://commons.wikimedia.org/wiki/File:ArtificialNeuronModel_english.png) will help. This is the artificial neuron "classic" model (_classic_ here means _we always see it when we start doing Machine/Deeo Learning_):
+I believe the [following image](https://commons.wikimedia.org/wiki/File:ArtificialNeuronModel_english.png) will help. This is the artificial neuron "classic" model (_classic_ here means _we always see it when we start doing Machine/Deep Learning_):
 
 <figure>
   <img src="/images/posts_images/2020-09-03-xor_neural_net/800px-ArtificialNeuronModel_english.png" alt="classic artificial neuron">
@@ -230,32 +230,52 @@ Here, a "neuron" can be seen as the process which produces a particular output $
 
 $$h_i = w_{i,1} * i_1 + w_{i,2} * i_2$$. 
 
-Here, $$w_{i,j}$$ are the weights that produces the _i-th_ hidden-layer output. The _i_ elements are the inputs (the _x_ in the image). The ```transfer function``` comprises the two products and the sum. Actually, it can be written as $$h_i = \vec{w_i} \vec{i}$$ either, which means _the inner product between the _i-th_ weights and the input (here is clearer the transfer function is the inner product itself). The input $$net_j$$ is $$h_i$$, and we'll finally deal with the activation function!
+Here, $$w_{i,j}$$ are the weights that produces the _i-th_ hidden-layer output. The _i_ elements are the inputs (the _x_ in the image). The ```transfer function``` comprises the two products and the sum. Actually, it can be written as $$h_i = \vec{w_i} \vec{i}$$ either, which means _the inner product between the i-th_ weights and the input (here is clearer the transfer function is the inner product itself). The input $$net_j$$ is $$h_i$$, and we'll finally deal with the activation function!
 
 In the original formulation, there's no non-linear activation function. Notice I wrote:
 $$\vec{o} = ŷ = M * \vec{h}$$ . 
 
 The transformation is linear, right? What we are going to do now is to add the ReLU, such that: $$\vec{o} = ŷ = M * ReLU( \vec{h} )$$. Here, the threshold $$\theta_j$$ does not exist.
 
+So far it was said the activation function occurs after each inner product. If we think the layer as outputing a vector, the activation funcion is applied point-wise.
+
 # Visualizing Results (Function Composition)
 
-The model we chose to use has a hidden layer followed by ReLU nonlinearity. It implements the global function:
+The model we chose to use has a hidden layer followed by ReLU nonlinearity. It implements the global function (considering the bias):
 
-$$f(\vect{};W,\vect{c},\vect{w},b) = \vect{w}^{T}max{0,W^{T}\vect{x}+\vect{c}}+b$$ .
+$$f(\vec{x};W,\vec{c},\vec{w},b) = \vec{w}^{T} max{0,W^{T}\vec{x}+\vec{c}}+b$$ .
 
 A specified solution to the XOR problem has the following parameters:
 
-$$W = \begin{matrix} 1 & 1\\
-      1 & 1
-      \end{matrix}
-
-\vec{c} = [0 -1]^{T}
-\vec{w} = [1 -2]^{T}
 $$
+W = 
+\begin{bmatrix}
+h_1 \\
+h_2 \\
+h_3 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 1 \\
+1 & 1 \\
+\end{bmatrix}
+,
+c = 
+\begin{bmatrix}
+0 \\
+-1 \\
+\end{bmatrix} , 
+
+\vec{w} = 
+\begin{bmatrix}
+1 \\
+-2 \\
+\end{bmatrix}
+$$,
 
 and b = 0.
 
-Let's visualize it step by step.
+Let's visualize what's going on step-by-step.
 
 ## First Transformation for Representation Space
 
