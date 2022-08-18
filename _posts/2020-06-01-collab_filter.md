@@ -276,3 +276,5 @@ The learning process often needs the reading of material other people has produc
 * [Python Lists Indexing (Programiz)](https://www.programiz.com/python-programming/methods/list/index)
 
 * [Collaborative Filtering Paper](https://courses.cs.washington.edu/courses/csep546/17au/psetwww/2/algsweb.pdf)
+
+* [Python List Index Method with Examples (Scaler Topics)](https://www.scaler.com/topics/python-list-index-method/)
